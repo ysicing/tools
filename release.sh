@@ -86,7 +86,6 @@ download(){
 build(){
     cp Dockerfile ${releasedir}
     cd ${releasedir}
-    sed -i "s#None#${date +%F}#g" Dockerfile
     tar zcf pkg.tgz `find . -maxdepth 1 | sed 1d`
     docker build -t spanda/pkg .
 }
