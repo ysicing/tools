@@ -22,8 +22,8 @@ get_etcd(){
     rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
     rm -rf /tmp/test-etcd && mkdir -p /tmp/test-etcd
 
-    curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-    tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
+    curl -s -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+    tar xzf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
     echo "copy etcd"
     cp /tmp/test-etcd/etcd*  ${releasedir}
     chmod +x ${releasedir}/etcd*
@@ -81,12 +81,16 @@ download(){
     get_dry
     get_imgreg
     get_kubeprompt
+    ls -al ${releasedir}/*
 }
 
 build(){
-    cp Dockerfile ${releasedir}
     cd ${releasedir}
     tar zcf pkg.tgz `find . -maxdepth 1 | sed 1d`
+    cat > Dockerfile <<EOF
+FROM alpine:3.8
+COPY pkg.tgz /
+EOF
     docker build -t spanda/pkg .
 }
 
