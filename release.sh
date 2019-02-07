@@ -29,6 +29,15 @@ get_etcd(){
     chmod +x ${releasedir}/etcd*
 }
 
+get_helm(){
+    local HELM_VER=v2.12.3
+    curl -s -L https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VER}-linux-amd64.tar.gz -o /tmp/helm-${HELM_VER}-linux-amd64.tar.gz
+    tar xzf /tmp/helm-${HELM_VER}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
+    echo "copy helm"
+    cp -a /tmp/helm/helm ${releasedir}
+    cp -a /tmp/helm/tiller ${releasedir}
+}
+
 get_dockercompose(){
     local DC_VER=1.23.2
     curl -L https://github.com/docker/compose/releases/download/${DC_VER}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
@@ -75,6 +84,7 @@ get_kubeprompt(){
 download(){
     get_localbin
     get_etcd
+    get_helm
     get_dockercompose
     get_calicoctl
     get_ctop
