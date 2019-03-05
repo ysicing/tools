@@ -93,6 +93,12 @@ get_kubeprompt(){
     chmod +x ${releasedir}/kube-prompt
 }
 
+get_brook(){
+    local BROOK_VER=v20190205
+    curl -s -L https://github.com/txthinking/brook/releases/download/${BROOK_VER}/brook -o ${releasedir}/brook
+    chmod +x ${releasedir}/brook
+}
+
 download(){
     get_localbin
     get_etcd
@@ -104,6 +110,7 @@ download(){
     get_dry
     get_imgreg
     get_kubeprompt
+    get_brook
     ls -al ${releasedir}/*
 }
 
