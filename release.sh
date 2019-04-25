@@ -99,6 +99,12 @@ get_brook(){
     chmod +x ${releasedir}/brook
 }
 
+get_kustomize(){
+    local KUSTOMIZE_VER=2.0.3
+    curl -s -L https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VER}/kustomize_${KUSTOMIZE_VER}_linux_amd64 -o ${releasedir}/kustomize
+    chmod +x ${releasedir}/kustomize
+}
+
 download(){
     get_localbin
     get_etcd
@@ -111,6 +117,7 @@ download(){
     get_imgreg
     get_kubeprompt
     get_brook
+    get_kustomize
     ls -al ${releasedir}/*
 }
 
