@@ -6,5 +6,5 @@
 # usage
 
 ```
-docker run --rm -v /usr/local/bin:/sysdir spanda/pkg tar zxf /pkg.tgz -C /sysdir
+docker run --rm -v /opt/cni/bin:/sysdir spanda/cni tar zxf /cni.tgz -C /sysdir
 ```
