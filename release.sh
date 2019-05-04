@@ -14,7 +14,7 @@ get_localbin(){
 }
 
 get_etcd(){
-    local ETCD_VER=v3.3.8
+    local ETCD_VER=v3.3.13
     local GOOGLE_URL=https://storage.googleapis.com/etcd
     local GITHUB_URL=https://github.com/coreos/etcd/releases/download
     DOWNLOAD_URL=${GOOGLE_URL}
@@ -30,7 +30,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local HELM_VER=v2.12.3
+    local HELM_VER=v2.13.1
     rm -f /tmp/helm-${HELM_VER}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VER}-linux-amd64.tar.gz -o /tmp/helm-${HELM_VER}-linux-amd64.tar.gz
@@ -41,7 +41,7 @@ get_helm(){
 }
 
 get_frpx(){
-    local FRPX_VER=0.23.3
+    local FRPX_VER=0.27.0
     rm -f /tmp/frp_${FRPX_VER}_linux_amd64.tar.gz
     rm -rf /tmp/frpx && mkdir -p /tmp/frpx
     curl -s -L https://github.com/fatedier/frp/releases/download/v${FRPX_VER}/frp_${FRPX_VER}_linux_amd64.tar.gz -o /tmp/frp_${FRPX_VER}_linux_amd64.tar.gz
@@ -51,14 +51,14 @@ get_frpx(){
     cp -a /tmp/frpx/frpc ${releasedir}
 }
 get_dockercompose(){
-    local DC_VER=1.23.2
+    local DC_VER=1.24.0
     curl -L https://github.com/docker/compose/releases/download/${DC_VER}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${DC_VER}"
     chmod +x ${releasedir}/docker-compose
 }
 
 get_calicoctl(){
-    local CALICO_VER=v3.5.0
+    local CALICO_VER=v3.7.0
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${CALICO_VER}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${CALICO_VER}"
     chmod +x ${releasedir}/calicoctl
@@ -72,7 +72,7 @@ get_ctop(){
 }
 
 get_dry(){
-    local DRY_VER=v0.9-beta.8
+    local DRY_VER=v0.9-beta.10
     curl -s -L https://github.com/moncho/dry/releases/download/${DRY_VER}/dry-linux-amd64 -o ${releasedir}/dry
     echo "download dry ${DRY_VER}"
     chmod +x ${releasedir}/dry
@@ -94,7 +94,7 @@ get_kubeprompt(){
 }
 
 get_brook(){
-    local BROOK_VER=v20190205
+    local BROOK_VER=v20190401
     curl -s -L https://github.com/txthinking/brook/releases/download/${BROOK_VER}/brook -o ${releasedir}/brook
     chmod +x ${releasedir}/brook
 }
@@ -103,6 +103,12 @@ get_kustomize(){
     local KUSTOMIZE_VER=2.0.3
     curl -s -L https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VER}/kustomize_${KUSTOMIZE_VER}_linux_amd64 -o ${releasedir}/kustomize
     chmod +x ${releasedir}/kustomize
+}
+
+get_k8s(){
+    local k8s_ver=v1.14.1
+    curl -s -L https://storage.googleapis.com/kubernetes-release/release/$k8s_ver/bin/linux/amd64/hyperkube -o ${releasedir}/hyperkube
+    chmod +x ${releasedir}/hyperkube
 }
 
 download(){
@@ -118,6 +124,7 @@ download(){
     get_kubeprompt
     get_brook
     get_kustomize
+    get_k8s
     ls -al ${releasedir}/*
 }
 
