@@ -1,0 +1,25 @@
+name: BuildDockerImage
+on:
+  push:
+jobs:
+  build:
+    name: build hackbin docker image
+    runs-on: 	ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: login docker
+      uses: actions/docker/login@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: build docker image
+      uses: actions/bin/sh@master
+      with:
+        args: "./release.sh"
+    - name: push hackbin image
+      uses: actions/docker/cli@master
+      with:    
+        args: "push spanda/pkg"
+      
