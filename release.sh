@@ -11,6 +11,10 @@ mkdir -p $releasedir
 get_localbin(){
     echo "copy local bin"
     cp -a local/* ${releasedir}
+    command -v curl || (
+        apt update
+        apt install -y curl
+    )
 }
 
 get_etcd(){
