@@ -90,13 +90,13 @@ build(){
 FROM alpine:3.8
 COPY pkg.tgz /
 EOF
-    docker build -t spanda/pkg .
+    docker build -t ysicing/tools .
 }
 
 case $1 in
     *)
         download
         build
-        echo "run <docker run --rm -v /usr/local/bin:/sysdir spanda/pkg tar zxf /pkg.tgz -C /sysdir> for install"
+        echo "run <docker run --rm -v /usr/local/bin:/sysdir ysicing/tools tar zxf /pkg.tgz -C /sysdir> for install"
     ;;
 esac
