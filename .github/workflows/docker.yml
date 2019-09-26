@@ -15,9 +15,9 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: build docker image
-      uses: actions/bin/sh@master
+      uses: actions/docker/cli@master
       with:
-        args: "./release.sh"
+        args: "build -t ysicing/tools ."
     - name: push hackbin image
       uses: actions/docker/cli@master
       with:    

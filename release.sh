@@ -91,11 +91,13 @@ download(){
 build(){
     cd ${releasedir}
     tar zcf pkg.tgz `find . -maxdepth 1 | sed 1d`
+    if [ ! -f "/.dockerenv" ]; then
     cat > Dockerfile <<EOF
 FROM alpine:3.8
 COPY pkg.tgz /
 EOF
     docker build -t ysicing/tools .
+    fi
 }
 
 case $1 in
