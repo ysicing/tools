@@ -1,4 +1,4 @@
-name: BuildDockerImage
+name: BuildTools
 on:
   push:
 jobs:
@@ -9,17 +9,13 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - name: login docker
-      uses: actions/docker/login@master
+    - name: build tools docker image
+      run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          set -x
+          docker build -t ysicing/tools .
+          docker push push ysicing/tools
+          docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: build docker image
-      uses: actions/docker/cli@master
-      with:
-        args: "build -t ysicing/tools ."
-    - name: push hackbin image
-      uses: actions/docker/cli@master
-      with:    
-        args: "push ysicing/tools"
-      
