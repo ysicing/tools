@@ -14,7 +14,7 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           set -x
           docker build -t ysicing/tools .
-          docker push push ysicing/tools
+          docker push ysicing/tools
           docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
