@@ -23,7 +23,7 @@ get_etcd(){
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
-    GITHUB_URL=https://github.com/coreos/etcd/releases/download
+    GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
     DOWNLOAD_URL=${GOOGLE_URL}
 
     rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
