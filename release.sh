@@ -37,7 +37,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.0.0-rc.2
+    local helm_ver=v3.0.0
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -47,14 +47,14 @@ get_helm(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.25.0-rc2
+    local dc_ver=1.25.0-rc4
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
 }
 
 get_calicoctl(){
-    local calico_ver=v3.10.0
+    local calico_ver=v3.10.1
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -68,7 +68,7 @@ get_ctop(){
 }
 
 get_trivy(){
-    local trivy_ver=0.1.6
+    local trivy_ver=0.1.7
     rm -f /tmp/trivy_${trivy_ver}_Linux-64bit.tar.gz
     rm -rf /tmp/trivy
     curl -s -L https://github.com/aquasecurity/trivy/releases/download/v${trivy_ver}/trivy_${trivy_ver}_Linux-64bit.tar.gz  -o /tmp/trivy_${trivy_ver}_Linux-64bit.tar.gz
