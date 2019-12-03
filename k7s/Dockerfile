@@ -14,6 +14,7 @@ RUN wget https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     mv cfssl_linux-amd64 /k7s/cfssl && \
     mv cfssljson_linux-amd64 /k7s/cfssljson && \
     mv cfssl-certinfo_linux-amd64 /k7s/cfssl-certinfo && \
+    chmod 777 /k7s/* && \
     \
     wget https://github.com/containernetworking/plugins/releases/download/$CNI_VER/cni-plugins-linux-amd64-$CNI_VER.tgz && \
     mkdir /cni && tar zxf cni-plugins-linux-amd64-$CNI_VER.tgz -C /cni && \
