@@ -78,6 +78,14 @@ get_trivy(){
     cp -a /tmp/trivy ${releasedir}
 }
 
+get_sealos(){
+    local sealos_ver=v3.0.1
+    curl -s -L https://github.com/fanux/sealos/releases/download/${sealos_ver}/sealos  -o /tmp/sealos
+    echo "copy sealos"
+    chmod +x /tmp/sealos
+    cp -a /tmp/sealos ${releasedir}
+}
+
 download(){
     get_localbin
     get_etcd
@@ -86,6 +94,7 @@ download(){
     get_calicoctl
     get_ctop
     get_trivy
+    get_sealos
     ls -al ${releasedir}/*
 }
 
