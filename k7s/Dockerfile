@@ -15,8 +15,8 @@ RUN wget https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     mv cfssljson_linux-amd64 /k7s/cfssljson && \
     mv cfssl-certinfo_linux-amd64 /k7s/cfssl-certinfo && \
     \
-    wget https://github.com/containernetworking/plugins/releases/download/$CNI_VER/cni-plugins-amd64-$CNI_VER.tgz && \
-    mkdir /cni && tar zxf cni-plugins-amd64-$CNI_VER.tgz -C /cni && \
+    wget https://github.com/containernetworking/plugins/releases/download/$CNI_VER/cni-plugins-linux-amd64-$CNI_VER.tgz && \
+    mkdir /cni && tar zxf cni-plugins-linux-amd64-$CNI_VER.tgz -C /cni && \
     cd /cni && mv bridge flannel host-local loopback portmap tuning /k7s && \
     cd / && rm -rf cni* && \
     cd /k7s/ && \
