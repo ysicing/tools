@@ -19,7 +19,7 @@ get_localbin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.3.17
+    ETCD_VER=v3.3.18
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -33,6 +33,7 @@ get_etcd(){
     tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
     echo "copy etcd"
     cp /tmp/test-etcd/etcdctl  ${releasedir}
+    cp /tmp/test-etcd/etcd  ${releasedir}
     chmod +x ${releasedir}/etcd*
 }
 
