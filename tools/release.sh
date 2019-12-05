@@ -10,6 +10,7 @@ mkdir -p $releasedir
 
 get_localbin(){
     echo "copy local bin"
+    chmod +x local/* 
     cp -a local/* ${releasedir}
     command -v curl || (
         apt update
