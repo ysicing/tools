@@ -69,6 +69,13 @@ get_ctop(){
     chmod +x ${releasedir}/ctop
 }
 
+get_kompose(){
+    local kompose_ver=v1.20.0
+    curl -s -L https://github.com/kubernetes/kompose/releases/download/${kompose_ver}/kompose-linux-amd64 -o ${releasedir}/kompose
+    echo "download kompose ${kompose_ver}"
+    chmod +x ${releasedir}/kompose
+}
+
 download(){
     get_localbin
     get_etcd
@@ -76,6 +83,7 @@ download(){
     get_dockercompose
     get_calicoctl
     get_ctop
+    get_kompose
     ls -al ${releasedir}/*
 }
 
