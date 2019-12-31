@@ -2,6 +2,8 @@
 
 if [ -f "/etc/kubernetes/pki/etcd/ca.crt" ];then
   ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key $@
+elif [ -f "/var/lib/etcd/cert/ca.pem" ];then
+  ETCDCTL_API=3 etcdctl --cacert=/var/lib/etcd/cert/ca.pem --cert=/var/lib/etcd/cert/etcd-server.pem --key=/var/lib/etcd/cert/etcd-server-key.pem $@
 else
   etcdctl $@
 fi
