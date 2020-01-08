@@ -1,7 +1,10 @@
 #!/bin/bash
 
 command -v kubectl && (
-    kubectl describe secret -n kube-system $(kubectl get secrets -n kube-system | grep dashboard-admin | cut -f1 -d ' ') | grep -E '^token'
-) || (
-    echo "you should install kubectl"
+    kubectl get secrets --all-namespaces | grep dashboard-admin && (
+	    kubectl describe secret -n kube-system $(kubectl get secrets -n kube-system | grep dashboard-admin | cut -f1 -d ' ') | grep -E '^token'
+    ) || (
+	    kubectl get secret -nkubernetes-dashboard $(kubectl get secret -n kubernetes-dashboard|grep dashboard-token |awk '{print $1}') -o jsonpath='{.data.token}'  | base64 --decode
+    )) || (
+        echo "you should install kubectl"
 )
