@@ -49,14 +49,14 @@ get_helm(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.25.1-rc1
+    local dc_ver=1.25.3
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
 }
 
 get_calicoctl(){
-    local calico_ver=v3.11.1
+    local calico_ver=v3.11.2
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -69,12 +69,12 @@ get_ctop(){
     chmod +x ${releasedir}/ctop
 }
 
-get_kompose(){
-    local kompose_ver=v1.20.0
-    curl -s -L https://github.com/kubernetes/kompose/releases/download/${kompose_ver}/kompose-linux-amd64 -o ${releasedir}/kompose
-    echo "download kompose ${kompose_ver}"
-    chmod +x ${releasedir}/kompose
-}
+# get_kompose(){
+#     local kompose_ver=v1.20.0
+#     curl -s -L https://github.com/kubernetes/kompose/releases/download/${kompose_ver}/kompose-linux-amd64 -o ${releasedir}/kompose
+#     echo "download kompose ${kompose_ver}"
+#     chmod +x ${releasedir}/kompose
+# }
 
 download(){
     get_localbin
@@ -83,7 +83,7 @@ download(){
     get_dockercompose
     get_calicoctl
     get_ctop
-    get_kompose
+    # get_kompose
     ls -al ${releasedir}/*
 }
 
