@@ -1,4 +1,4 @@
-FROM spanda/ptcore AS builder
+FROM ysicing/core:latest AS builder
 
 COPY . /opt
 

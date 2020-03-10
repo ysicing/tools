@@ -15,8 +15,12 @@ jobs:
           set -x
           docker build -t ysicing/tools tools
           docker push ysicing/tools
-          docker build -t ysicing/kubectl k7s
+          docker build -t ysicing/kubectl kubectl
           docker push ysicing/kubectl
+          docker build -t ysicing/k7s k7s 
+          docker tag ysicing/k7s ysicing/k7s:1.17.3
+          docker push ysicing/k7s
+          docker push ysicing/k7s:1.17.3
           docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}

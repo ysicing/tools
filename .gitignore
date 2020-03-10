@@ -13,3 +13,5 @@
 
 .release
 pkg.tgz
+
+k7s/kube
