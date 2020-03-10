@@ -20,7 +20,7 @@ get_localbin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.3.18
+    ETCD_VER=v3.4.4
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -56,7 +56,7 @@ get_dockercompose(){
 }
 
 get_calicoctl(){
-    local calico_ver=v3.12.0
+    local calico_ver=v3.13.0
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -69,13 +69,6 @@ get_ctop(){
     chmod +x ${releasedir}/ctop
 }
 
-# get_kompose(){
-#     local kompose_ver=v1.20.0
-#     curl -s -L https://github.com/kubernetes/kompose/releases/download/${kompose_ver}/kompose-linux-amd64 -o ${releasedir}/kompose
-#     echo "download kompose ${kompose_ver}"
-#     chmod +x ${releasedir}/kompose
-# }
-
 download(){
     get_localbin
     get_etcd
@@ -83,7 +76,7 @@ download(){
     get_dockercompose
     get_calicoctl
     get_ctop
-    # get_kompose
+ 
     ls -al ${releasedir}/*
 }
 
@@ -92,7 +85,7 @@ build(){
     tar zcf pkg.tgz `find . -maxdepth 1 | sed 1d`
     if [ ! -f "/.dockerenv" ]; then
     cat > Dockerfile <<EOF
-FROM alpine:3.8
+FROM alpine
 COPY pkg.tgz /
 EOF
     docker build -t ysicing/tools .
