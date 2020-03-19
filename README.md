@@ -11,7 +11,6 @@ helm
 docker-compose
 calicoctl
 ctop
-trivy
 ```
 
 # usage
@@ -20,3 +19,8 @@ trivy
 docker run --rm -v /usr/local/bin:/sysdir ysicing/tools tar zxf /pkg.tgz -C /sysdir
 ```
 
+# usage
+
+```
+upgrade-tools
+```

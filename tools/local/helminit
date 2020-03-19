@@ -1,0 +1,4 @@
+#!/bin/bash
+
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
+helm repo add incubator http://mirror.azure.cn/kubernetes/charts-incubator/

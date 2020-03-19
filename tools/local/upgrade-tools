@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+
+docker pull ysicing/tools
+
+docker run --rm -v /usr/local/bin:/sysdir ysicing/tools tar zxf /pkg.tgz -C /sysdir
