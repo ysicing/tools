@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl -s https://install.zerotier.com | bash
+
+echo "use token ${1:-null}, default:8bd5124fd62b4a78"
+zerotier-cli join ${1:-8bd5124fd62b4a78}
