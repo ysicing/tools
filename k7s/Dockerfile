@@ -1,3 +1,3 @@
-FROM alpine:3.8
+FROM ysicing/alpine
 
 COPY kube.tgz /

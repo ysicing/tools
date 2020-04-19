@@ -6,6 +6,6 @@ RUN chmod +x /opt/release.sh \
     && cd /opt \
     && /opt/release.sh
 
-FROM alpine:3.10
+FROM ysicing/alpine
 
 COPY --from=builder /opt/.release/pkg.tgz /
