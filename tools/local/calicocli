@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# kubectl apply -f https://docs.projectcalico.org/manifests/calicoctl.yaml
+# alias calicoctl="kubectl exec -i -n kube-system calicoctl /calicoctl -- "
+
+DATASTORE_TYPE=kubernetes KUBECONFIG=~/.kube/config calicoctl ${@}

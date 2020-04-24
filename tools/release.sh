@@ -69,6 +69,16 @@ get_ctop(){
     chmod +x ${releasedir}/ctop
 }
 
+get_istio(){
+    local istio_ver=1.5.2
+    rm -f /tmp/istio-${istio_ver}-linux.tar.gz
+    rm -rf /tmp/istio && mkdir -p /tmp/istio 
+    curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
+    tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
+    echo "copy istio"
+    cp -a /tmp/istio/bin/istio ${releasedir}
+}
+
 download(){
     get_localbin
     get_etcd
@@ -76,6 +86,7 @@ download(){
     get_dockercompose
     get_calicoctl
     get_ctop
+    get_istio
  
     ls -al ${releasedir}/*
 }
