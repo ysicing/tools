@@ -76,7 +76,7 @@ get_istio(){
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
     tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
     echo "copy istio"
-    cp -a /tmp/istio/bin/istio ${releasedir}
+    cp -a /tmp/istio/bin/istioctl ${releasedir}
 }
 
 download(){
