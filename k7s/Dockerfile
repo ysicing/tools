@@ -1,4 +1,4 @@
-FROM ysicing/alpine
+FROM ysicing/debian
 
 COPY k7s/kube.tgz /
 
