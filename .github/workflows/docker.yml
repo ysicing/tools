@@ -19,7 +19,7 @@ jobs:
           docker push ysicing/ctools
           docker build -t ysicing/kubectl kubectl
           docker push ysicing/kubectl
-          docker build -t ysicing/k7s k7s 
+          docker build -t ysicing/k7s -f k7s/Dockerfile . 
           docker tag ysicing/k7s ysicing/k7s:1.18.2
           docker push ysicing/k7s
           docker push ysicing/k7s:1.18.2
