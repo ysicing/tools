@@ -3,5 +3,6 @@
 helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 helm repo add incubator http://mirror.azure.cn/kubernetes/charts-incubator/
 helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo add bitnami https://charts.bitnami.com/bitnami
 
 helm repo update
