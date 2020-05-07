@@ -5,11 +5,16 @@ if [ ! -z "$1" ]; then
 fi
 
 MASTER_IP=${MASTER_IP:-11.11.11.11}
-NODE_IP=${NODE_IP:-MASTER_IP}
+
+if [ -z $NODE_IP ]; then
+    OPTCMD="--master ${MASTER_IP}"
+else
+    OPTCMD="--master ${MASTER_IP} --node ${NODE_IP}"
+fi
 
 if [ ! -z "$PASS" ]; then
-    sealos init --passwd ${PASS} --repo registry.cn-hangzhou.aliyuncs.com/google_containers --master ${MASTER_IP} --node ${NODE_IP} --version 1.18.2 --pkg-url /kube.tgz
+    sealos init --passwd ${PASS} --repo registry.cn-hangzhou.aliyuncs.com/google_containers ${OPTCMD} --version 1.18.2 --pkg-url /kube.tgz
 else
-    sealos init --repo registry.cn-hangzhou.aliyuncs.com/google_containers --master ${MASTER_IP} --node ${NODE_IP} --version 1.18.2 --pkg-url /kube.tgz
+    sealos init --repo registry.cn-hangzhou.aliyuncs.com/google_containers ${OPTCMD} --version 1.18.2 --pkg-url /kube.tgz
 fi
 
