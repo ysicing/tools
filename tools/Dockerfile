@@ -1,6 +1,10 @@
+FROM ysicing/ergo AS ergo
+
 FROM ysicing/core:latest AS builder
 
 COPY . /opt
+
+COPY --from=ergo /usr/local/bin/ergo /opt/local/ergo
 
 RUN chmod +x /opt/release.sh \
     && cd /opt \
