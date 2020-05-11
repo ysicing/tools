@@ -5,5 +5,6 @@ helm repo add incubator http://mirror.azure.cn/kubernetes/charts-incubator/
 helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add traefik https://containous.github.io/traefik-helm-chart
+helm repo add apphub https://apphub.aliyuncs.com
 
 helm repo update
