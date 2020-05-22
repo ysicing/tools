@@ -56,7 +56,7 @@ get_dockercompose(){
 }
 
 get_calicoctl(){
-    local calico_ver=v3.13.3
+    local calico_ver=v3.14.0
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -70,7 +70,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.5.2
+    local istio_ver=1.6.0
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
