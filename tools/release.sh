@@ -20,7 +20,7 @@ get_localbin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.7
+    ETCD_VER=v3.4.9
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -39,7 +39,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.2.1
+    local helm_ver=v3.2.3
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -49,14 +49,14 @@ get_helm(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.25.5
+    local dc_ver=1.26.0
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
 }
 
 get_calicoctl(){
-    local calico_ver=v3.14.0
+    local calico_ver=v3.14.1
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -70,7 +70,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.6.0
+    local istio_ver=1.6.2
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -80,7 +80,7 @@ get_istio(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.7.1
+    local linkerd2_ver=stable-2.8.0
     curl -s -L  https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
