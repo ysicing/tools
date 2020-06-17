@@ -16,9 +16,7 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           set -x
           docker build -t ysicing/tools tools
-          docker build -t ysicing/ctools contrib
           docker push ysicing/tools
-          docker push ysicing/ctools
           docker build -t ysicing/kubectl kubectl
           docker push ysicing/kubectl
           docker build -t ysicing/k7s -f k7s/Dockerfile . 
