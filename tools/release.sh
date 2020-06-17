@@ -86,6 +86,13 @@ get_linkerd2(){
     chmod +x ${releasedir}/linkerd
 }
 
+get_k3s(){
+    local k3s_ver=/v1.17.6+k3s1
+    curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
+    echo "download k3s ${k3s_ver}"
+    chmod +x ${releasedir}/k3s
+}
+
 
 download(){
     get_localbin
@@ -96,6 +103,7 @@ download(){
     get_ctop
     get_istio
     get_linkerd2
+    get_k3s
  
     ls -al ${releasedir}/*
 }
