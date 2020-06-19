@@ -13,8 +13,8 @@ else
 fi
 
 if [ ! -z "$PASS" ]; then
-    sealos init --passwd ${PASS} --repo registry.cn-hangzhou.aliyuncs.com/google_containers ${OPTCMD} --version 1.18.4 --pkg-url /kube.tgz
+    sealos init --passwd ${PASS} --repo registry.cn-hangzhou.aliyuncs.com/k7scn ${OPTCMD} --version 1.18.4 --pkg-url /kube.tgz
 else
-    sealos init --repo registry.cn-hangzhou.aliyuncs.com/google_containers ${OPTCMD} --version 1.18.4 --pkg-url /kube.tgz
+    sealos init --repo registry.cn-hangzhou.aliyuncs.com/k7scn ${OPTCMD} --version 1.18.4 --pkg-url /kube.tgz
 fi
 
