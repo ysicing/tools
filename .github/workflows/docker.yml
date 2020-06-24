@@ -15,14 +15,16 @@ jobs:
       run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           set -x
-          docker build -t ysicing/tools tools
-          docker push ysicing/tools
+          docker build -t ysicing/gotools gotools
+          docker push ysicing/gotools
           docker build -t ysicing/kubectl kubectl
           docker push ysicing/kubectl
           docker build -t ysicing/k7s -f k7s/Dockerfile . 
           docker tag ysicing/k7s ysicing/k7s:1.18.4
           docker push ysicing/k7s
           docker push ysicing/k7s:1.18.4
+          docker build -t ysicing/tools tools
+          docker push ysicing/tools
           docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
