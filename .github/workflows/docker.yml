@@ -14,7 +14,7 @@ jobs:
     - name: build tools docker image
       run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          echo "$ALI_PASS" | docker login registry.aliyuncs.com -u "$ALI_USER" --password-stdin
+          # echo "$ALI_PASS" | docker login registry.aliyuncs.com -u "$ALI_USER" --password-stdin
           set -x
           docker build -t ysicing/gotools gotools
           docker push ysicing/gotools
@@ -25,13 +25,13 @@ jobs:
           docker push ysicing/k7s
           docker push ysicing/k7s:1.18.4
           docker tag ysicing/k7s registry.aliyuncs.com/k7scn/k7s
-          docker tag ysicing/k7s:1.18.4 registry.aliyuncs.com/k7scn/k7s:1.18.4
-          docker push registry.aliyuncs.com/k7scn/k7s
-          docker push registry.aliyuncs.com/k7scn/k7s:1.18.4
+          # docker tag ysicing/k7s:1.18.4 registry.aliyuncs.com/k7scn/k7s:1.18.4
+          # docker push registry.aliyuncs.com/k7scn/k7s
+          # docker push registry.aliyuncs.com/k7scn/k7s:1.18.4
           docker build -t ysicing/tools tools
           docker push ysicing/tools
-          docker tag ysicing/tools registry.aliyuncs.com/k7scn/tools
-          docker push registry.aliyuncs.com/k7scn/tools
+          # docker tag ysicing/tools registry.aliyuncs.com/k7scn/tools
+          # docker push registry.aliyuncs.com/k7scn/tools
           docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
