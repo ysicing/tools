@@ -8,4 +8,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add traefik https://containous.github.io/traefik-helm-chart
 helm repo add apphub https://apphub.aliyuncs.com
 
+# https://docs.flagger.app/tutorials/nginx-progressive-delivery
+helm repo add flagger https://flagger.app
+
 helm repo update
