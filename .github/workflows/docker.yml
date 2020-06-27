@@ -21,13 +21,9 @@ jobs:
           docker build -t ysicing/kubectl kubectl
           docker push ysicing/kubectl
           docker build -t ysicing/k7s -f k7s/Dockerfile . 
-          docker tag ysicing/k7s ysicing/k7s:1.18.4
+          docker tag ysicing/k7s ysicing/k7s:1.18.5
           docker push ysicing/k7s
-          docker push ysicing/k7s:1.18.4
-          docker tag ysicing/k7s registry.aliyuncs.com/k7scn/k7s
-          # docker tag ysicing/k7s:1.18.4 registry.aliyuncs.com/k7scn/k7s:1.18.4
-          # docker push registry.aliyuncs.com/k7scn/k7s
-          # docker push registry.aliyuncs.com/k7scn/k7s:1.18.4
+          docker push ysicing/k7s:1.18.5
           docker build -t ysicing/tools tools
           docker push ysicing/tools
           # docker tag ysicing/tools registry.aliyuncs.com/k7scn/tools
