@@ -55,7 +55,7 @@ get_helm(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.26.0
+    local dc_ver=1.26.2
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -76,7 +76,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.6.3
+    local istio_ver=1.6.4
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -87,7 +87,7 @@ get_istio(){
 
 get_linkerd2(){
     local linkerd2_ver=stable-2.8.1
-    curl -s -L  https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
+    curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
 }
