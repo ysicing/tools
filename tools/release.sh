@@ -99,6 +99,15 @@ get_k3s(){
     chmod +x ${releasedir}/k3s
 }
 
+get_critools(){
+    local critools_ver=v1.18.0
+    curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
+    echo "download critools ${critools_ver}"
+    tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
+    echo "copy critools"
+    cp -a /tmp/crictl ${releasedir}
+}
+
 
 download(){
     get_localgobin
@@ -111,6 +120,7 @@ download(){
     get_istio
     get_linkerd2
     get_k3s
+    get_critools
  
     ls -al ${releasedir}/*
 }

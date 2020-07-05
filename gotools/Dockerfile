@@ -1,4 +1,4 @@
-FROM ysicing/gobuild as gotools
+FROM ysicing/dgo as gotools
 
 # ENV GOPROXY=https://goproxy.cn
 
