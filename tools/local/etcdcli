@@ -1,9 +1,22 @@
 #!/bin/bash
 
 if [ -f "/etc/kubernetes/pki/etcd/ca.crt" ];then
-  ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key $@
+	export ETCDCTL_API=3
+	CMD="etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key"
 elif [ -f "/var/lib/etcd/cert/ca.pem" ];then
-  ETCDCTL_API=3 etcdctl --cacert=/var/lib/etcd/cert/ca.pem --cert=/var/lib/etcd/cert/etcd-server.pem --key=/var/lib/etcd/cert/etcd-server-key.pem $@
+	export ETCDCTL_API=3
+	CMD="etcdctl --cacert=/var/lib/etcd/cert/ca.pem --cert=/var/lib/etcd/cert/etcd-server.pem --key=/var/lib/etcd/cert/etcd-server-key.pem"
 else
-  etcdctl $@
+	CMD="etcdctl"
+fi
+
+if [ "$1"x == "clean"x ]; then
+	version=$($CMD endpoint status --write-out="json" | egrep -o '"revision":[0-9]*' | egrep -o '[0-9].*')
+	echo "etcd compact old version, now version: $version"
+	$CMD compact $version
+	echo "etcd defrag"
+	$CMD defrag
+	$CMD endpoint status --write-out="table"
+else
+	$CMD $@
 fi
