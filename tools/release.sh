@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.9
+    ETCD_VER=v3.4.10
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -54,6 +54,17 @@ get_helm(){
     cp -a /tmp/helm/helm ${releasedir}
 }
 
+get_helmv2(){
+    local helm_ver=v2.16.9
+    rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
+    rm -rf /tmp/helm && mkdir -p /tmp/helm 
+    curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
+    tar xzf /tmp/helm-${helm_ver}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
+    echo "copy helmv2"
+    mv /tmp/helm/helm /tmp/helm/helmv2 
+    cp -a /tmp/helm/helmv2 ${releasedir}
+}
+
 get_dockercompose(){
     local dc_ver=1.26.2
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
@@ -62,7 +73,7 @@ get_dockercompose(){
 }
 
 get_calicoctl(){
-    local calico_ver=v3.15.0
+    local calico_ver=v3.15.1
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -93,7 +104,7 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.18.4+k3s1
+    local k3s_ver=v1.18.6+k3s1
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
@@ -114,6 +125,7 @@ download(){
     get_localbin
     get_etcd
     get_helm
+    get_helmv2
     get_dockercompose
     get_calicoctl
     get_ctop
