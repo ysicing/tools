@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.2.4
+    local helm_ver=v3.3.0
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -73,7 +73,7 @@ get_dockercompose(){
 }
 
 get_calicoctl(){
-    local calico_ver=v3.15.1
+    local calico_ver=v3.14.2
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
@@ -87,13 +87,23 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.6.7
+    local istio_ver=1.6.8
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
     tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
     echo "copy istio"
     cp -a /tmp/istio/bin/istioctl ${releasedir}
+}
+
+get_osm(){
+    local osm_ver=v0.2.0
+    rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
+    rm -rf /tmp/osm && mkdir -p /tmp/osm
+    curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
+    tar xf /tmp/osm-${osm_ver}-linux-amd64.tar.gz -C /tmp/osm --strip-components=1 
+    echo "copy osm"
+    cp -a /tmp/osm/osm ${releasedir}
 }
 
 get_linkerd2(){
@@ -119,7 +129,6 @@ get_critools(){
     cp -a /tmp/crictl ${releasedir}
 }
 
-
 download(){
     get_localgobin
     get_localbin
@@ -131,6 +140,7 @@ download(){
     get_ctop
     get_istio
     get_linkerd2
+    get_osm
     get_k3s
     get_critools
  
