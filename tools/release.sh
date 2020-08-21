@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.10
+    ETCD_VER=v3.4.12
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -55,7 +55,7 @@ get_helm(){
 }
 
 get_helmv2(){
-    local helm_ver=v2.16.9
+    local helm_ver=v2.16.10
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_osm(){
-    local osm_ver=v0.2.0
+    local osm_ver=v0.3.0
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -114,7 +114,7 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.18.6+k3s1
+    local k3s_ver=v1.18.8+k3s1
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s

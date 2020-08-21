@@ -6,7 +6,7 @@ COPY k7s/kube /kube
 
 COPY tools/local/sealos /kube/bin/sealos
 
-ARG K8SVER=v1.18.6
+ARG K8SVER=v1.18.8
 
 RUN chmod +x /release.sh \
     && /release.sh
