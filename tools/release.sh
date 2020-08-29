@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.12
+    ETCD_VER=v3.4.13
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -121,7 +121,7 @@ get_k3s(){
 }
 
 get_critools(){
-    local critools_ver=v1.18.0
+    local critools_ver=v1.19.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
