@@ -2,14 +2,14 @@
 
 set -x
 
-image="ysicing/tools"
+action() {
+	image=$1
+	docker pull ${image}
+	docker run --rm -v /usr/local/bin:/sysdir ${image} tar zxf /pkg.tgz -C /sysdir
+}
 
 curl -s  https://api.ip.sb/geoip | grep China -q && (
-	image="registry.cn-beijing.aliyuncs.com/k7scn/tools"
+	action "registry.cn-beijing.aliyuncs.com/k7scn/tools"
 ) || (
-	image="ysicing/tools"
+	action "ysicing/tools"
 )
-
-docker pull ${image}
-
-docker run --rm -v /usr/local/bin:/sysdir ${image} tar zxf /pkg.tgz -C /sysdir
