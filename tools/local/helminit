@@ -11,5 +11,7 @@ helm repo add cockroachdb https://charts.cockroachdb.com/
 
 # https://docs.flagger.app/tutorials/nginx-progressive-delivery
 helm repo add flagger https://flagger.app
+# https://grafana.com/docs/loki/latest/installation/helm/
+helm repo add loki https://grafana.github.io/loki/charts
 
 helm repo update
