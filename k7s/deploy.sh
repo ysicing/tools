@@ -6,10 +6,10 @@ fi
 
 MASTER_IP=${MASTER_IP:-11.11.11.11}
 MTU=${MTU:-1440}
-K8sVersion=${K8sVersion:-1.16.14}
+K8sVersion=${K8sVersion:-1.16.15}
 
 if [ "$K8sVersion"x == "latest"x ]; then
-    K8sVersion=1.16.14
+    K8sVersion=1.16.15
 fi
 
 if [ -z $NODE_IP ]; then

@@ -2,7 +2,7 @@
 
 set -ex
 
-k8s_ver=${K8SVER:-v1.16.14}
+k8s_ver=${K8SVER:-v1.16.15}
 
 base=${1:-/kube}
 

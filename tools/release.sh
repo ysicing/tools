@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.3.0
+    local helm_ver=v3.3.1
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -114,7 +114,7 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.18.8+k3s1
+    local k3s_ver=v1.16.15+k3s1
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
