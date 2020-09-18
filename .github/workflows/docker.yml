@@ -16,18 +16,7 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           # echo "$ALI_PASS" | docker login registry.aliyuncs.com -u "$ALI_USER" --password-stdin
           set -x
-          docker build -t ysicing/gotools gotools
-          docker push ysicing/gotools
-          docker build -t ysicing/kubectl kubectl
-          docker push ysicing/kubectl
-          docker build -t ysicing/k7s -f k7s/Dockerfile . 
-          docker tag ysicing/k7s ysicing/k7s:1.16.15
-          docker push ysicing/k7s
-          docker push ysicing/k7s:1.16.15
-          docker build -t ysicing/tools tools
-          docker push ysicing/tools
-          # docker tag ysicing/tools registry.aliyuncs.com/k7scn/tools
-          # docker push registry.aliyuncs.com/k7scn/tools
+          ./build.sh
           docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
