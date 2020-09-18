@@ -15,7 +15,7 @@ jobs:
       run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           # echo "$ALI_PASS" | docker login registry.aliyuncs.com -u "$ALI_USER" --password-stdin
-          set -x
+          set -e
           ./build.sh
           docker logout
       env:

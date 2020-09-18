@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.3.1
+    local helm_ver=v3.3.2
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -55,7 +55,7 @@ get_helm(){
 }
 
 get_helmv2(){
-    local helm_ver=v2.16.10
+    local helm_ver=v2.16.11
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -66,7 +66,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.27.2
+    local dc_ver=1.27.3
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
