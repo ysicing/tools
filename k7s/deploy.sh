@@ -1,26 +1,7 @@
 #!/bin/bash
 
-if [ ! -z "$1" ]; then
-    exec $@
-fi
+[ -f "/root/.sealos/kube.tgz" ] && rm -rf /root/.sealos/kube.tgz || mkdir -p /root/.sealos
 
-MASTER_IP=${MASTER_IP:-11.11.11.11}
-MTU=${MTU:-1440}
-K8sVersion=${K8sVersion:-1.16.15}
+cp -a /kube.tgz /root/.sealos/kube.tgz
 
-if [ "$K8sVersion"x == "latest"x ]; then
-    K8sVersion=1.16.15
-fi
-
-if [ -z $NODE_IP ]; then
-    OPTCMD="--master ${MASTER_IP}"
-else
-    OPTCMD="--master ${MASTER_IP} --node ${NODE_IP}"
-fi
-
-if [ ! -z "$PASS" ]; then
-    sealos init --passwd ${PASS} --mtu ${MTU}  --repo registry.cn-beijing.aliyuncs.com/k7scn ${OPTCMD} --version ${K8sVersion} --pkg-url /kube.tgz
-else
-    sealos init --mtu ${MTU} --repo registry.cn-beijing.aliyuncs.com/k7scn ${OPTCMD} --version ${K8sVersion} --pkg-url /kube.tgz
-fi
-
+exec sealos init --repo registry.cn-beijing.aliyuncs.com/k7scn --version 1.19.2 --pkg-url /root/.sealos/kube.tgz $@
