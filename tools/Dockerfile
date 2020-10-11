@@ -1,10 +1,10 @@
-FROM ysicing/dgo as sealosbuild
+FROM ysicing/god as sealosbuild
 
 WORKDIR /go/src
 
 ENV GOPROXY="https://goproxy.cn,direct"
 
-RUN git clone https://github.com/ysicing/sealos.git --depth 1 && cd sealos && ./build.sh ysicing-local
+RUN git clone https://github.com/ysicing/sealos.git --depth 1 && cd /go/src/sealos && ./build.sh ysicing-local
 
 FROM ysicing/ergo AS ergo
 

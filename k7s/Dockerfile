@@ -1,4 +1,4 @@
-FROM ysicing/dgo as sealosbuild
+FROM ysicing/god as sealosbuild
 
 WORKDIR /go/src
 
