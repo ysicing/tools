@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ "$1" == "bash" ]; then
+    exec /bin/bash
+fi
+
 [ -f "/root/.sealos/kube.tgz" ] && rm -rf /root/.sealos/kube.tgz || mkdir -p /root/.sealos
 
 cp -a /kube.tgz /root/.sealos/kube.tgz

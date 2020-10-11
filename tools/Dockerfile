@@ -1,3 +1,11 @@
+FROM ysicing/dgo as sealosbuild
+
+WORKDIR /go/src
+
+ENV GOPROXY="https://goproxy.cn,direct"
+
+RUN git clone https://github.com/ysicing/sealos.git --depth 1 && cd sealos && ./build.sh ysicing-local
+
 FROM ysicing/ergo AS ergo
 
 FROM ysicing/gotools AS gotools
@@ -10,7 +18,11 @@ COPY --from=ergo /usr/local/bin/ergo /opt/local/ergo
 
 COPY --from=gotools /root/bin /opt/gobin
 
+COPY --from=sealosbuild /go/src/sealos/sealos /opt/local/sealos
+
 RUN chmod +x /opt/release.sh \
+    && chmod +x  /opt/local/sealos \
+    && chmod +x /opt/local/ergo \
     && cd /opt \
     && /opt/release.sh
 
