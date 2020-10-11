@@ -12,5 +12,5 @@ do
         docker build -t ysicing/${image} -f ${image}/Dockerfile .
     fi    
     docker push ysicing/${image}
-    curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}"
+    curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}"\&nocache=true
 done
