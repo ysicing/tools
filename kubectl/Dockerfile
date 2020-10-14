@@ -1,6 +1,6 @@
 FROM alpine:3.10 AS getk8s
 
-ENV K8S_VER=v1.19.2
+ENV K8S_VER=v1.19.3
 
 RUN wget https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     tar zxf kubernetes-server-linux-amd64.tar.gz && \
