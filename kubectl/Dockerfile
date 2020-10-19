@@ -1,4 +1,4 @@
-FROM alpine:3.10 AS getk8s
+FROM ysicing/debian AS getk8s
 
 ENV K8S_VER=v1.19.3
 
@@ -10,7 +10,7 @@ RUN wget https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 && \
     chmod 777 /k7s/*
 
-FROM ysicing/alpine
+FROM ysicing/debian
 
 COPY --from=getk8s /k7s/kubectl /usr/local/bin/
 
