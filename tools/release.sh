@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_osm(){
-    local osm_ver=v0.4.1
+    local osm_ver=v0.4.2
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -114,7 +114,7 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.19.2+k3s1
+    local k3s_ver=v1.19.3+k3s1
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s

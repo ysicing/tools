@@ -5,7 +5,8 @@ helm repo add incubator http://mirror.azure.cn/kubernetes/charts-incubator/
 helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo add traefik https://containous.github.io/traefik-helm-chart
+# helm repo add traefik https://containous.github.io/traefik-helm-chart
+helm repo add traefik https://helm.traefik.io/traefik
 helm repo add apphub https://apphub.aliyuncs.com
 helm repo add cockroachdb https://charts.cockroachdb.com/
 
