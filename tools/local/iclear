@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker images | grep -E '(months|week|day)'  | awk '{print $1":"$2}' | xargs -I {} docker rmi {}
+docker images | grep none | awk '{print $3}' | xargs -I {} docker rmi {}
