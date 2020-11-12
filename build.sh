@@ -10,9 +10,9 @@ do
         docker build -t ysicing/${image} ${image}
     else
         docker build -t ysicing/${image} -f ${image}/Dockerfile .
-        docker tag ysicing/${image} ysicing/${image}:1.19.3
-        docker push ysicing/${image}:1.19.3
-         curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}:1.19.3"\&nocache=true
+        docker tag ysicing/${image} ysicing/${image}:1.19.4
+        docker push ysicing/${image}:1.19.4
+         curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}:1.19.4"\&nocache=true
     fi    
     docker push ysicing/${image}
     curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}"\&nocache=true
