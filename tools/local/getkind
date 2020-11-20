@@ -1,0 +1,7 @@
+#!/bin/bash
+
+which kind || (
+    docker run -it --rm -v /tmp/kinddl:/root registry.cn-beijing.aliyuncs.com/k7scn/kind cp -a /usr/local/bin/kind /root/kind
+    mv /tmp/kinddl/kind /usr/local/bin/kind
+    chmod +x /usr/local/bin/kind
+)
