@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.13
+    ETCD_VER=v3.4.14
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.4.1
+    local helm_ver=v3.4.2
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -87,7 +87,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.8.0
+    local istio_ver=1.8.1
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_osm(){
-    local osm_ver=v0.5.0
+    local osm_ver=v0.6.0
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -107,14 +107,14 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.9.0
+    local linkerd2_ver=stable-2.9.1
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
 }
 
 get_k3s(){
-    local k3s_ver=v1.19.3+k3s2
+    local k3s_ver=v1.19.5+k3s2
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
