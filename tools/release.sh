@@ -114,11 +114,19 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.19.5+k3s2
+    local k3s_ver=v1.20.0+k3s2
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
 }
+
+get_k0s(){
+    local k0s_ver=v0.9.0
+    curl -s -L  https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
+    echo "download k0s ${k0s_ver}"
+    chmod +x ${releasedir}/k0s
+}
+
 
 get_critools(){
     local critools_ver=v1.19.0
@@ -127,6 +135,12 @@ get_critools(){
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
     echo "copy critools"
     cp -a /tmp/crictl ${releasedir}
+}
+
+get_mc() {
+    curl -s -L https://dl.min.io/client/mc/release/linux-amd64/mc -o ${releasedir}/mc
+    echo "download mc"
+    chmod +x ${releasedir}/mc
 }
 
 download(){
@@ -142,8 +156,9 @@ download(){
     get_linkerd2
     get_osm
     get_k3s
+    get_k0s
     get_critools
- 
+    get_mc
     ls -al ${releasedir}/*
 }
 

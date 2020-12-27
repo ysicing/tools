@@ -12,8 +12,8 @@ do
         docker build -t ysicing/${image} -f ${image}/Dockerfile .
         docker tag ysicing/${image} ysicing/${image}:1.18.14
         docker push ysicing/${image}:1.18.14
-         curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}:1.18.14"\&nocache=true
+        # curl -s https://cr.hk1.godu.dev/pull\?name="ysicing/${image}:1.18.14"\&nocache=true
     fi    
     docker push ysicing/${image}
-    curl -s https://cr.hk2.godu.dev/pull\?name="ysicing/${image}"\&nocache=true
+    # curl -s https://cr.hk1.godu.dev/pull\?name="ysicing/${image}"\&nocache=true
 done
