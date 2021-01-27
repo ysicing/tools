@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.4.2
+    local helm_ver=v3.5.0
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -66,7 +66,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.27.4
+    local dc_ver=1.28.2
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -87,7 +87,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.8.1
+    local istio_ver=1.8.2
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_osm(){
-    local osm_ver=v0.6.0
+    local osm_ver=v0.6.1
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -107,21 +107,21 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.9.1
+    local linkerd2_ver=stable-2.9.2
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
 }
 
 get_k3s(){
-    local k3s_ver=v1.20.0+k3s2
+    local k3s_ver=v1.20.2+k3s1
     curl -s -L  https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
 }
 
 get_k0s(){
-    local k0s_ver=v0.9.0
+    local k0s_ver=v0.9.1
     curl -s -L  https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
@@ -129,7 +129,7 @@ get_k0s(){
 
 
 get_critools(){
-    local critools_ver=v1.19.0
+    local critools_ver=v1.20.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/

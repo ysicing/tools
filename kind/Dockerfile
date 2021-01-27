@@ -1,6 +1,6 @@
 FROM ysicing/debian AS getk8s
 
-ENV KD_VER=v0.9.0
+ENV KD_VER=v0.10.0
 
 RUN wget https://github.com/kubernetes-sigs/kind/releases/download/${KD_VER}/kind-linux-amd64 && \
     mkdir -p /k7s/ && mv kind-linux-amd64 /k7s/kind && \
