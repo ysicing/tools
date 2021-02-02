@@ -1,28 +1,8 @@
 [![Build Status](https://travis-ci.org/ysicing/tools.svg?branch=master)](https://travis-ci.org/ysicing/tools)
 
-# tools
-常见二进制或者脚本封装
-
-## 常用工具
-
-```bash
-etcdctl
-helm
-docker-compose
-calicoctl
-ctop
 ```
-
-# usage
-
-```
-docker run --rm -v /usr/local/bin:/sysdir ysicing/tools tar zxf /pkg.tgz -C /sysdir
-#  大陆
-docker run --rm -v /usr/local/bin:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/tools tar zxf /pkg.tgz -C /sysdir
-```
-
-# usage
-
-```
-upgrade-tools
+# 境外
+docker run --rm -v /root:/sysdir ysicing/pkg:1.19.7 cp /kube.tgz /sysdir
+# 大陆
+docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.19.7 cp /kube.tgz /sysdir
 ```

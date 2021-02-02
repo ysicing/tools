@@ -1,4 +1,4 @@
-name: BuildTools
+name: K8s1.19
 on:
   push:
   # schedule:
@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - name: build tools docker image
+    - name: build k8s 1.19 tools docker image
       run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           # echo "$ALI_PASS" | docker login registry.aliyuncs.com -u "$ALI_USER" --password-stdin
