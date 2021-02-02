@@ -1,5 +1,0 @@
-#!/bin/bash
-
-docker pull ysicing/kubectl
-
-docker run -it --rm -v ~/.kube:/root/.kube ysicing/kubectl $@
