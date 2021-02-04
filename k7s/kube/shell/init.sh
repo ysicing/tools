@@ -1,9 +1,20 @@
+#!/bin/bash
+
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.conf.all.rp_filter=1
+EOF
+
+sysctl --system
+sysctl -w net.ipv4.ip_forward=1
+
 swapoff -a || true
 
 cp ../bin/* /usr/bin
 # Cgroup driver
 cp ../conf/kubelet.service /etc/systemd/system/
-mkdir /etc/systemd/system/kubelet.service.d
+[ -d /etc/systemd/system/kubelet.service.d ] || mkdir /etc/systemd/system/kubelet.service.d
 cp ../conf/10-kubeadm.conf /etc/systemd/system/kubelet.service.d/
 
 # Open ipvs
@@ -11,13 +22,23 @@ modprobe -- ip_vs
 modprobe -- ip_vs_rr
 modprobe -- ip_vs_wrr
 modprobe -- ip_vs_sh
-modprobe -- nf_conntrack
 
-cgroupDriver=$(docker info|grep Cg)
+version_ge(){
+    test "$(echo "$@" | tr ' ' '\n' | sort -rV | head -n 1)" == "$1"
+}
+
+kernel_version=$(uname -r | cut -d- -f1)
+if version_ge "${kernel_version}" 4.19; then
+  modprobe -- nf_conntrack
+else
+  modprobe -- nf_conntrack_ipv4
+fi
+
+cgroupDriver=$(docker info|grep "Cgroup Driver")
 driver=${cgroupDriver##*: }
 echo "driver is ${driver}"
 
-mkdir -p /var/lib/kubelet/ || true
+[ -d /var/lib/kubelet ] || mkdir -p /var/lib/kubelet/
 
 cat <<EOF > /var/lib/kubelet/config.yaml
 address: 0.0.0.0

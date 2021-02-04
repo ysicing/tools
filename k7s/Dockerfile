@@ -4,7 +4,7 @@ WORKDIR /go/src
 
 ENV GOPROXY="https://goproxy.cn,direct"
 
-RUN git clone https://github.com/ysicing/sealos.git --depth 1 && cd sealos && ./build.sh ysicing-local
+RUN git clone https://github.com/ysicing/sealos.git --depth 1 -b 1.18-talk && cd sealos && ./build.sh 1.18-talk
 
 FROM ysicing/debian as base
 
