@@ -66,7 +66,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.28.2
+    local dc_ver=1.28.3
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
