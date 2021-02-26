@@ -66,7 +66,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.28.3
+    local dc_ver=1.28.5
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -96,6 +96,15 @@ get_istio(){
     cp -a /tmp/istio/bin/istioctl ${releasedir}
 }
 
+get_getistio(){
+    local getistio_ver=v1.0.3
+    rm -f /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
+    curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
+    tar xzf /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
+    echo "copy getistio"
+    cp -a /tmp/getistio ${releasedir}
+}
+
 get_osm(){
     local osm_ver=v0.7.0
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -107,14 +116,14 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.9.3
+    local linkerd2_ver=stable-2.9.4
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
 }
 
 get_k3s(){
-    local k3s_ver=v1.20.2+k3s1
+    local k3s_ver=v1.20.4+k3s1
     curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
