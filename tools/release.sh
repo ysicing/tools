@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.14
+    ETCD_VER=v3.4.15
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -45,7 +45,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.5.2
+    local helm_ver=v3.5.3
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -87,7 +87,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.9.0
+    local istio_ver=1.9.1
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_getistio(){
-    local getistio_ver=v1.0.3
+    local getistio_ver=v1.0.4
     rm -f /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
     curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
     tar xzf /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
@@ -116,8 +116,8 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.9.4
-    curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux -o ${releasedir}/linkerd
+    local linkerd2_ver=stable-2.10.0
+    curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
 }
