@@ -66,7 +66,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.28.5
+    local dc_ver=1.28.6
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -87,7 +87,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.9.1
+    local istio_ver=1.9.2
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -97,7 +97,7 @@ get_istio(){
 }
 
 get_getistio(){
-    local getistio_ver=v1.0.4
+    local getistio_ver=v1.0.5
     rm -f /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
     curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
     tar xzf /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
@@ -106,7 +106,7 @@ get_getistio(){
 }
 
 get_osm(){
-    local osm_ver=v0.7.0
+    local osm_ver=v0.8.2
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -130,7 +130,7 @@ get_k3s(){
 }
 
 get_k0s(){
-    local k0s_ver=v0.10.0
+    local k0s_ver=v0.12.0
     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
