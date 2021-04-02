@@ -42,6 +42,7 @@ get_etcd(){
     cp /tmp/test-etcd/etcdctl  ${releasedir}
     cp /tmp/test-etcd/etcd  ${releasedir}
     chmod +x ${releasedir}/etcd*
+    ${releasedir}/etcdctl -h | grep version || exit 1
 }
 
 get_helm(){
@@ -52,6 +53,8 @@ get_helm(){
     tar xzf /tmp/helm-${helm_ver}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
     echo "copy helm"
     cp -a /tmp/helm/helm ${releasedir}
+    chmod +x ${releasedir}/helm
+    ${releasedir}/helm -h | grep version || exit 1
 }
 
 get_helmv2(){
@@ -63,6 +66,8 @@ get_helmv2(){
     echo "copy helmv2"
     mv /tmp/helm/helm /tmp/helm/helmv2 
     cp -a /tmp/helm/helmv2 ${releasedir}
+    chmod +x ${releasedir}/helmv2
+    ${releasedir}/helmv2 -h | grep version || exit 1
 }
 
 get_dockercompose(){
@@ -70,6 +75,7 @@ get_dockercompose(){
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
+    ${releasedir}/docker-compose -h | grep version || exit 1
 }
 
 get_calicoctl(){
@@ -77,6 +83,7 @@ get_calicoctl(){
     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
     echo "download calicoctl ${calico_ver}"
     chmod +x ${releasedir}/calicoctl
+    ${releasedir}/calicoctl -h | grep version || exit 1
 }
 
 get_ctop(){
@@ -84,6 +91,7 @@ get_ctop(){
     curl -s -L https://github.com/bcicen/ctop/releases/download/v${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
     echo "download ctop ${ctop_ver}"
     chmod +x ${releasedir}/ctop
+    ${releasedir}/ctop -v | grep version || exit 1
 }
 
 get_istio(){
@@ -94,15 +102,21 @@ get_istio(){
     tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
     echo "copy istio"
     cp -a /tmp/istio/bin/istioctl ${releasedir}
+    chmod +x ${releasedir}/istioctl
+    ${releasedir}/istioctl -h | grep version || exit 1
 }
 
 get_getistio(){
     local getistio_ver=v1.0.5
-    rm -f /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
-    curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
-    tar xzf /tmp/getistio-${getistio_ver}_linux_amd64.tar.gz
+    rm -f /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+    curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+    pushd /tmp
+    tar xf /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+    popd
     echo "copy getistio"
     cp -a /tmp/getistio ${releasedir}
+    chmod +x ${releasedir}/getistio
+    ${releasedir}/getistio -h | grep version || exit 1
 }
 
 get_osm(){
@@ -113,6 +127,8 @@ get_osm(){
     tar xf /tmp/osm-${osm_ver}-linux-amd64.tar.gz -C /tmp/osm --strip-components=1 
     echo "copy osm"
     cp -a /tmp/osm/osm ${releasedir}
+    chmod +x ${releasedir}/osm
+    ${releasedir}/osm -h | grep version || exit 1
 }
 
 get_linkerd2(){
@@ -120,6 +136,7 @@ get_linkerd2(){
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
+    ${releasedir}/linkerd -h | grep version || exit 1
 }
 
 get_k3s(){
@@ -127,6 +144,7 @@ get_k3s(){
     curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
+    ${releasedir}/k3s -h | grep version || exit 1
 }
 
 get_k0s(){
@@ -134,6 +152,15 @@ get_k0s(){
     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
+    ${releasedir}/k0s -h | grep version || exit 1
+}
+
+get_k0sctl(){
+    local k0sctl_ver=v0.6.0
+    curl -s -L https://github.com/k0sproject/k0sctl/releases/download/${k0sctl_ver}/k0sctl-linux-x64 -o ${releasedir}/k0sctl
+    echo "download k0sctl ${k0sctl_ver}"
+    chmod +x ${releasedir}/k0sctl
+    ${releasedir}/k0sctl -h | grep version || exit 1
 }
 
 
@@ -162,10 +189,12 @@ download(){
     get_calicoctl
     get_ctop
     get_istio
-    get_linkerd2
+    get_getistio
     get_osm
+    get_linkerd2
     get_k3s
     get_k0s
+    get_k0sctl
     get_critools
     get_mc
     ls -al ${releasedir}/*
