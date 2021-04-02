@@ -130,7 +130,7 @@ get_k3s(){
 }
 
 get_k0s(){
-    local k0s_ver=v0.12.0
+    local k0s_ver=v0.12.1
     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
