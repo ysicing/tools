@@ -17,5 +17,5 @@ helm repo add flagger https://flagger.app
 # https://grafana.com/docs/loki/latest/installation/helm/
 helm repo add loki https://grafana.github.io/loki/charts
 helm repo add kuma https://kumahq.github.io/charts
-
+helm repo add longhorn https://charts.longhorn.io
 helm repo update
