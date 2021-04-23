@@ -46,7 +46,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.5.3
+    local helm_ver=v3.5.4
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -71,7 +71,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.28.6
+    local dc_ver=1.29.1
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.9.2
+    local istio_ver=1.9.3
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -120,7 +120,7 @@ get_getistio(){
 }
 
 get_osm(){
-    local osm_ver=v0.8.2
+    local osm_ver=v0.8.3
     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/osm && mkdir -p /tmp/osm
     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
@@ -132,7 +132,7 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.10.0
+    local linkerd2_ver=stable-2.10.1
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
