@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.9.3
+    local istio_ver=1.9.4
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -140,7 +140,7 @@ get_linkerd2(){
 }
 
 get_k3s(){
-    local k3s_ver=v1.20.5+k3s1
+    local k3s_ver=v1.18.18+k3s1
     curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
     echo "download k3s ${k3s_ver}"
     chmod +x ${releasedir}/k3s
@@ -148,7 +148,7 @@ get_k3s(){
 }
 
 get_k0s(){
-    local k0s_ver=v0.12.1
+    local k0s_ver=v0.13.1
     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
@@ -156,7 +156,7 @@ get_k0s(){
 }
 
 get_k0sctl(){
-    local k0sctl_ver=v0.6.0
+    local k0sctl_ver=v0.8.2
     curl -s -L https://github.com/k0sproject/k0sctl/releases/download/${k0sctl_ver}/k0sctl-linux-x64 -o ${releasedir}/k0sctl
     echo "download k0sctl ${k0sctl_ver}"
     chmod +x ${releasedir}/k0sctl
@@ -165,7 +165,7 @@ get_k0sctl(){
 
 
 get_critools(){
-    local critools_ver=v1.20.0
+    local critools_ver=v1.21.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
