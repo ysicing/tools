@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.15
+    ETCD_VER=v3.4.16
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -71,7 +71,7 @@ get_helmv2(){
 }
 
 get_dockercompose(){
-    local dc_ver=1.29.1
+    local dc_ver=1.29.2
     curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-Linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose ${dc_ver}"
     chmod +x ${releasedir}/docker-compose
@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.9.4
+    local istio_ver=1.9.5
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -132,7 +132,7 @@ get_osm(){
 }
 
 get_linkerd2(){
-    local linkerd2_ver=stable-2.10.1
+    local linkerd2_ver=stable-2.10.2
     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
     echo "download linkerd2 ${linkerd2_ver}"
     chmod +x ${releasedir}/linkerd
@@ -148,7 +148,7 @@ get_k3s(){
 }
 
 get_k0s(){
-    local k0s_ver=v0.13.1
+    local k0s_ver=v1.21.0+k0s.0
     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
     echo "download k0s ${k0s_ver}"
     chmod +x ${releasedir}/k0s
@@ -156,7 +156,7 @@ get_k0s(){
 }
 
 get_k0sctl(){
-    local k0sctl_ver=v0.8.2
+    local k0sctl_ver=v0.8.4
     curl -s -L https://github.com/k0sproject/k0sctl/releases/download/${k0sctl_ver}/k0sctl-linux-x64 -o ${releasedir}/k0sctl
     echo "download k0sctl ${k0sctl_ver}"
     chmod +x ${releasedir}/k0sctl
