@@ -87,7 +87,7 @@ get_calicoctl(){
 }
 
 get_ctop(){
-    local ctop_ver=0.7.5
+    local ctop_ver=0.7.6
     curl -s -L https://github.com/bcicen/ctop/releases/download/v${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
     echo "download ctop ${ctop_ver}"
     chmod +x ${releasedir}/ctop
@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.10.0
+    local istio_ver=1.10.1
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
