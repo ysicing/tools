@@ -88,7 +88,7 @@ get_calicoctl(){
 
 get_ctop(){
     local ctop_ver=0.7.6
-    curl -s -L https://github.com/bcicen/ctop/releases/download/v${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
+    curl -s -L https://github.com/bcicen/ctop/releases/download/${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
     echo "download ctop ${ctop_ver}"
     chmod +x ${releasedir}/ctop
     ${releasedir}/ctop -v | grep version || exit 1
