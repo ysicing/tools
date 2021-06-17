@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcd(){
 
-    ETCD_VER=v3.4.16
+    ETCD_VER=v3.5.0
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -46,7 +46,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.6.0
+    local helm_ver=v3.6.1
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -106,30 +106,30 @@ get_istio(){
     ${releasedir}/istioctl -h | grep version || exit 1
 }
 
-get_getistio(){
-    local getistio_ver=v1.0.5
-    rm -f /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
-    curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
-    pushd /tmp
-    tar xf /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
-    popd
-    echo "copy getistio"
-    cp -a /tmp/getistio ${releasedir}
-    chmod +x ${releasedir}/getistio
-    ${releasedir}/getistio -h | grep version || exit 1
-}
+# get_getistio(){
+#     local getistio_ver=v1.0.5
+#     rm -f /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+#     curl -s -L https://github.com/tetratelabs/getistio/releases/download/${getistio_ver}/getistio_linux_amd64.tar.gz -o /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+#     pushd /tmp
+#     tar xf /tmp/getistio_${getistio_ver}_linux_amd64.tar.gz
+#     popd
+#     echo "copy getistio"
+#     cp -a /tmp/getistio ${releasedir}
+#     chmod +x ${releasedir}/getistio
+#     ${releasedir}/getistio -h | grep version || exit 1
+# }
 
-get_osm(){
-    local osm_ver=v0.8.4
-    rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
-    rm -rf /tmp/osm && mkdir -p /tmp/osm
-    curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
-    tar xf /tmp/osm-${osm_ver}-linux-amd64.tar.gz -C /tmp/osm --strip-components=1 
-    echo "copy osm"
-    cp -a /tmp/osm/osm ${releasedir}
-    chmod +x ${releasedir}/osm
-    ${releasedir}/osm -h | grep version || exit 1
-}
+# get_osm(){
+#     local osm_ver=v0.8.4
+#     rm -f /tmp/osm-${osm_ver}-linux-amd64.tar.gz
+#     rm -rf /tmp/osm && mkdir -p /tmp/osm
+#     curl -s -L https://github.com/openservicemesh/osm/releases/download/${osm_ver}/osm-${osm_ver}-linux-amd64.tar.gz -o /tmp/osm-${osm_ver}-linux-amd64.tar.gz
+#     tar xf /tmp/osm-${osm_ver}-linux-amd64.tar.gz -C /tmp/osm --strip-components=1 
+#     echo "copy osm"
+#     cp -a /tmp/osm/osm ${releasedir}
+#     chmod +x ${releasedir}/osm
+#     ${releasedir}/osm -h | grep version || exit 1
+# }
 
 get_linkerd2(){
     local linkerd2_ver=stable-2.10.2
@@ -189,8 +189,8 @@ download(){
     get_calicoctl
     get_ctop
     get_istio
-    get_getistio
-    get_osm
+    # get_getistio
+    # get_osm
     get_linkerd2
     get_k3s
     get_k0s
