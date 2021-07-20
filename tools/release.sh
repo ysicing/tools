@@ -46,7 +46,7 @@ get_etcd(){
 }
 
 get_helm(){
-    local helm_ver=v3.6.1
+    local helm_ver=v3.6.3
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.10.1
+    local istio_ver=1.10.3
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -139,6 +139,14 @@ get_linkerd2(){
     ${releasedir}/linkerd -h | grep version || exit 1
 }
 
+get_k8e(){
+    local k8e_ver=v1.19.12+k8e3
+    curl -s -L https://github.com/xiaods/k8e/releases/download/${k8e_ver}/k8e -o ${releasedir}/k8e
+    echo "download k8e ${k8e_ver}"
+    chmod +x ${releasedir}/k8e
+    ${releasedir}/k8e -h | grep version || exit 1
+}
+
 get_k3s(){
     local k3s_ver=v1.18.19+k3s1
     curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
@@ -147,21 +155,21 @@ get_k3s(){
     ${releasedir}/k3s -h | grep version || exit 1
 }
 
-get_k0s(){
-    local k0s_ver=v1.21.1+k0s.0
-    curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
-    echo "download k0s ${k0s_ver}"
-    chmod +x ${releasedir}/k0s
-    ${releasedir}/k0s -h | grep version || exit 1
-}
+# get_k0s(){
+#     local k0s_ver=v1.21.2+k0s.1
+#     curl -s -L https://github.com/k0sproject/k0s/releases/download/${k0s_ver}/k0s-${k0s_ver}-amd64 -o ${releasedir}/k0s
+#     echo "download k0s ${k0s_ver}"
+#     chmod +x ${releasedir}/k0s
+#     ${releasedir}/k0s -h | grep version || exit 1
+# }
 
-get_k0sctl(){
-    local k0sctl_ver=v0.8.4
-    curl -s -L https://github.com/k0sproject/k0sctl/releases/download/${k0sctl_ver}/k0sctl-linux-x64 -o ${releasedir}/k0sctl
-    echo "download k0sctl ${k0sctl_ver}"
-    chmod +x ${releasedir}/k0sctl
-    ${releasedir}/k0sctl -h | grep version || exit 1
-}
+# get_k0sctl(){
+#     local k0sctl_ver=v0.8.4
+#     curl -s -L https://github.com/k0sproject/k0sctl/releases/download/${k0sctl_ver}/k0sctl-linux-x64 -o ${releasedir}/k0sctl
+#     echo "download k0sctl ${k0sctl_ver}"
+#     chmod +x ${releasedir}/k0sctl
+#     ${releasedir}/k0sctl -h | grep version || exit 1
+# }
 
 
 get_critools(){
@@ -193,8 +201,9 @@ download(){
     # get_osm
     get_linkerd2
     get_k3s
-    get_k0s
-    get_k0sctl
+    get_k8e
+    # get_k0s
+    # get_k0sctl
     get_critools
     get_mc
     ls -al ${releasedir}/*

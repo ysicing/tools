@@ -2,12 +2,12 @@
 
 set -ex
 
-k8s_ver=${K8SVER:-v1.18.19}
+k8s_ver=${K8SVER:-v1.18.20}
 
 base=${1:-/kube}
 
 get_kube(){
-    # local k8s_ver=v1.18.19
+    # local k8s_ver=v1.18.20
     rm -f /tmp/kubernetes-${k8s_ver}-server-linux-amd64.tar.gz
     rm -rf /tmp/k8s && mkdir -p /tmp/k8s 
     curl -s -L https://dl.k8s.io/${k8s_ver}/kubernetes-server-linux-amd64.tar.gz -o /tmp/kubernetes-${k8s_ver}-server-linux-amd64.tar.gz

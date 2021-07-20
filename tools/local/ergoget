@@ -1,0 +1,49 @@
+#!/bin/bash
+
+get=$1
+
+echo "will download $get"
+
+kindget() {
+    which kind || (
+    docker run -it --rm -v /tmp/kinddl:/root registry.cn-beijing.aliyuncs.com/k7scn/kind cp -a /usr/local/bin/kind /root/kind
+    mv /tmp/kinddl/kind /usr/local/bin/kind
+    chmod +x /usr/local/bin/kind
+    )
+}
+
+kuectlget() {
+    which kind || (
+    docker run -it --rm -v /tmp/kinddl:/root registry.cn-beijing.aliyuncs.com/k7scn/kind cp -a /usr/local/bin/kind /root/kind
+    mv /tmp/kinddl/kind /usr/local/bin/kind
+    chmod +x /usr/local/bin/kind
+    )
+}
+
+k7sget(){
+    which docker && (
+        docker pull registry.cn-beijing.aliyuncs.com/k7scn/k7s
+    )
+}
+
+pkgget(){
+    which docker || (
+        docker pull registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20
+        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20 cp /kube.tgz /sysdir
+    )
+}
+
+case $get in
+    kind)
+        kindget
+    ;;
+    kubectl)
+        kuectlget
+    ;;
+    k7s)
+        k7sget
+    ;;
+    pkg)
+        pkgget
+    ;;
+esac
