@@ -302,7 +302,9 @@ ExecStartPre=-/sbin/modprobe overlay
 ExecStart=${BIN_DIR}/k3s \\
     ${CMD_K3S_EXEC}
     --docker \\
-    --flannel-backend wireguard
+    --flannel-backend wireguard \\
+    --kube-proxy-arg "proxy-mode=ipvs" "masquerade-all=true" \\
+    --kube-proxy-arg "metrics-bind-address=0.0.0.0"
 EOF
 }
 

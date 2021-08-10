@@ -6,7 +6,7 @@ images=$(ls -al | grep "drwxr"  | grep -v "\." | awk '{print $NF}' | tr '\n' ' '
 for image in ${images[@]}
 do
     cat ${image}/Dockerfile | grep FROM | awk '{print $2}' | xargs -I {} docker pull {}
-    if [ ${image} != "k7s" -a ${image} != "pkg" ]; then  
+    if [ ${image} != "k7s" -a ${image} != "pkg" ]; then
         docker build -t ysicing/${image} ${image}
     else
         docker build -t ysicing/${image} -f ${image}/Dockerfile .

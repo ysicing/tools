@@ -173,7 +173,7 @@ get_k3s(){
 
 
 get_critools(){
-    local critools_ver=v1.21.0
+    local critools_ver=v1.22.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
