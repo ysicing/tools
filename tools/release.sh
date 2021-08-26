@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.11.0
+    local istio_ver=1.11.1
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -140,7 +140,7 @@ get_linkerd2(){
 }
 
 get_k8e(){
-    local k8e_ver=v1.19.12+k8e3
+    local k8e_ver=v1.19.14+k8e1
     curl -s -L https://github.com/xiaods/k8e/releases/download/${k8e_ver}/k8e -o ${releasedir}/k8e
     echo "download k8e ${k8e_ver}"
     chmod +x ${releasedir}/k8e

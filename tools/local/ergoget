@@ -33,6 +33,13 @@ pkgget(){
     )
 }
 
+tailscaleget(){
+    which docker || (
+        docker pull registry.cn-beijing.aliyuncs.com/k7scn/tailscale
+        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/tailscale cp /root/*.deb /sysdir
+    )
+}
+
 case $get in
     kind)
         kindget

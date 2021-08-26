@@ -14,4 +14,4 @@ FROM ysicing/debian
 
 COPY --from=getk8s /k7s/kubectl /usr/local/bin/
 
-CMD [ "kubectl", "--help" ]
+# CMD [ "kubectl", "--help" ]
