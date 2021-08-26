@@ -4,7 +4,7 @@
 - istio版本升级到1.11.1
 - k8e升级到v1.19.14+k8e1
 - 新增tailscale离线包
-- ergoget新增tailscaleget子命令
+- 优化ergoget并新增tailscaleget子命令
 
 ## 20210820
 
