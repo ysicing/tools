@@ -1,3 +1,8 @@
+## 20210829
+
+- 优化ergoget
+- 优化helminit, 移除apphub,cockroachdb,flagger
+
 ## 20210826
 
 - 优化kubectl镜像

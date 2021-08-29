@@ -37,8 +37,8 @@ pkgget(){
 
 tailscaleget(){
     which docker || (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/tailscale
-        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/tailscale cp /root/*.deb /sysdir
+        docker pull registry.cn-beijing.aliyuncs.com/k7scn/debcache
+        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/debcache cp /root/*.deb /sysdir
     )
 }
 
@@ -54,5 +54,8 @@ case $get in
     ;;
     pkg)
         pkgget
+    ;;
+    tailscale)
+        tailscaleget
     ;;
 esac
