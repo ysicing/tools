@@ -95,7 +95,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.11.1
+    local istio_ver=1.11.2
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -131,21 +131,21 @@ get_istio(){
 #     ${releasedir}/osm -h | grep version || exit 1
 # }
 
-get_linkerd2(){
-    local linkerd2_ver=stable-2.10.2
-    curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
-    echo "download linkerd2 ${linkerd2_ver}"
-    chmod +x ${releasedir}/linkerd
-    ${releasedir}/linkerd -h | grep version || exit 1
-}
+# get_linkerd2(){
+#     local linkerd2_ver=stable-2.10.2
+#     curl -s -L https://github.com/linkerd/linkerd2/releases/download/${linkerd2_ver}/linkerd2-cli-${linkerd2_ver}-linux-amd64 -o ${releasedir}/linkerd
+#     echo "download linkerd2 ${linkerd2_ver}"
+#     chmod +x ${releasedir}/linkerd
+#     ${releasedir}/linkerd -h | grep version || exit 1
+# }
 
-get_k8e(){
-    local k8e_ver=v1.19.14+k8e1
-    curl -s -L https://github.com/xiaods/k8e/releases/download/${k8e_ver}/k8e -o ${releasedir}/k8e
-    echo "download k8e ${k8e_ver}"
-    chmod +x ${releasedir}/k8e
-    ${releasedir}/k8e -h | grep version || exit 1
-}
+# get_k8e(){
+#     local k8e_ver=v1.19.14+k8e2
+#     curl -s -L https://github.com/xiaods/k8e/releases/download/${k8e_ver}/k8e -o ${releasedir}/k8e
+#     echo "download k8e ${k8e_ver}"
+#     chmod +x ${releasedir}/k8e
+#     ${releasedir}/k8e -h | grep version || exit 1
+# }
 
 get_k3s(){
     local k3s_ver=v1.18.19+k3s1
@@ -199,9 +199,9 @@ download(){
     get_istio
     # get_getistio
     # get_osm
-    get_linkerd2
+    # get_linkerd2
     get_k3s
-    get_k8e
+    # get_k8e
     # get_k0s
     # get_k0sctl
     get_critools

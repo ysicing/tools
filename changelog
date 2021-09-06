@@ -1,3 +1,8 @@
+## 20210906
+
+- istio版本升级到1.11.2
+- 移除linkerd2, k8e, zerotier.install
+
 ## 20210829
 
 - 优化ergoget
