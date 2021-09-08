@@ -5,7 +5,8 @@ command -v kubectl && (
 	    kubectl get secret -n kubernetes-dashboard $(kubectl get secret -n kubernetes-dashboard|grep super-kd-user |awk '{print $1}') -o jsonpath='{.data.token}'  | base64 --decode
     ) || (
         echo "you should install kubernetes-dashboard"
-        echo "kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml"
+        echo "kubectl apply -f https://sh.ysicing.me/k8s/dashboard/recommended.yaml"
+        echo "kubectl apply -f https://sh.ysicing.me/k8s/dashboard/admin.yaml"
     ) ) || (
         echo "you should install kubectl"
 )
