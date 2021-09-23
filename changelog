@@ -1,3 +1,9 @@
+## 20210923
+
+- helm版本升级到3.7.0
+- k3s版本升级到v1.21.5+k3s1
+- `ysicing/kubectl` 默认更新到v1.21.5
+
 ## 20210911
 
 - tools移除sealos,hostctl,移除kubectl-k8s
