@@ -280,7 +280,9 @@ WantedBy=multi-user.target
 
 [Service]
 Type=${SYSTEMD_TYPE}
-EnvironmentFile=${FILE_K3S_ENV}
+EnvironmentFile=-/etc/default/%N
+EnvironmentFile=-/etc/sysconfig/%N
+EnvironmentFile=-${FILE_K3S_ENV}
 KillMode=process
 Delegate=yes
 # Having non-zero Limit*s causes performance problems due to accounting overhead
@@ -296,9 +298,9 @@ ExecStartPre=-/sbin/modprobe br_netfilter
 ExecStartPre=-/sbin/modprobe overlay
 ExecStart=${BIN_DIR}/k3s \\
     ${CMD_K3S_EXEC}
-    --docker \\
-    --flannel-backend wireguard \\
-    --disable traefik \\
+    --tls-san k3s.local \\
+    --flannel-backend none \\
+    --disable traefik,servicelb \\
     --kube-proxy-arg "proxy-mode=ipvs" "masquerade-all=true" \\
     --kube-proxy-arg "metrics-bind-address=0.0.0.0"
 EOF

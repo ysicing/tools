@@ -3,6 +3,8 @@
 - helm版本升级到3.7.0
 - k3s版本升级到v1.21.5+k3s1
 - `ysicing/kubectl` 默认更新到v1.21.5
+- 新增cilium
+- 优化k3s.install
 
 ## 20210911
 

@@ -187,6 +187,14 @@ get_mc() {
     chmod +x ${releasedir}/mc
 }
 
+get_cilium() {
+    curl -s -L --remote-name-all https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz -o /tmp/cilium-linux-amd64.tar.gz
+    tar xzf /tmp/cilium-linux-amd64.tar.gz -C /tmp/
+    cp -a /tmp/cilium ${releasedir}
+    chmod +x ${releasedir}/cilium
+    ${releasedir}/cilium -h | grep version || exit 1
+}
+
 download(){
     get_localgobin
     get_localbin
@@ -206,6 +214,7 @@ download(){
     # get_k0sctl
     get_critools
     get_mc
+    get_cilium
     ls -al ${releasedir}/*
 }
 
