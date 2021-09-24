@@ -7,6 +7,6 @@ RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.list | tee /etc
 
 RUN apt-get update && apt install tailscale -d -y
 
-FROM ysicing/debian
+FROM ysicing/alpine
 
-COPY --from=dl /var/cache/apt/archives/tailscale_* /root/
+COPY --from=dl /var/cache/apt/archives/tailscale_* /

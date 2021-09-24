@@ -29,16 +29,16 @@ k7sget(){
 }
 
 pkgget(){
-    which docker || (
+    which docker && (
         docker pull registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20
-        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20 cp /kube.tgz /sysdir
+        docker run -it --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20 cp /kube.tgz /sysdir
     )
 }
 
 tailscaleget(){
-    which docker || (
+    which docker && (
         docker pull registry.cn-beijing.aliyuncs.com/k7scn/debcache
-        docker run --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/debcache cp /root/*.deb /sysdir
+        docker run -it --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/debcache cp $(docker run --rm registry.cn-beijing.aliyuncs.com/k7scn/debcache ls -l | grep deb | awk '{print $NF}') /sysdir/
     )
 }
 
@@ -57,5 +57,8 @@ case $get in
     ;;
     tailscale)
         tailscaleget
+    ;;
+    *)
+        echo "kind\nkubectl\nk7s\npkg\ntailscale\n"
     ;;
 esac
