@@ -1,3 +1,13 @@
+## 20211016
+
+- tailscale升级到1.16.0
+- helm版本升级到3.7.1
+- etcd版本升级为3.5.1
+- docker-compose版本升级为v2.0.1
+- istio版本升级到1.11.4
+- 禁用k7s/pkg构建
+- 废弃helmv2
+
 ## 20211002
 
 - tailscale升级到1.14.6
