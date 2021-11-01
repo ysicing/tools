@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "use $1 kubeconfig"
-
-kubectl --kubeconfig ~/.kube/$1 ${@:2}

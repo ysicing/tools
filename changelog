@@ -1,3 +1,9 @@
+## 20211102
+
+- tailscale升级到1.16.2
+- 移除kubectl-k8s
+- scope升级到1.13.2
+
 ## 20211016
 
 - tailscale升级到1.16.0

@@ -301,6 +301,7 @@ ExecStart=${BIN_DIR}/k3s \\
     --tls-san k3s.local \\
     --flannel-backend none \\
     --disable traefik,servicelb \\
+    --docker \\
     --kube-proxy-arg "proxy-mode=ipvs" "masquerade-all=true" \\
     --kube-proxy-arg "metrics-bind-address=0.0.0.0"
 EOF
