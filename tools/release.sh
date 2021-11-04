@@ -24,7 +24,7 @@ get_localgobin(){
     cp -a /opt/gobin/*  ${releasedir}
 }
 
-get_etcd(){
+get_etcdctl(){
 
     ETCD_VER=v3.5.1
 
@@ -40,7 +40,6 @@ get_etcd(){
     tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
     echo "copy etcd"
     cp /tmp/test-etcd/etcdctl  ${releasedir}
-    cp /tmp/test-etcd/etcd  ${releasedir}
     chmod +x ${releasedir}/etcd*
     ${releasedir}/etcdctl -h | grep version || exit 1
 }
@@ -147,13 +146,13 @@ get_istio(){
 #     ${releasedir}/k8e -h | grep version || exit 1
 # }
 
-get_k3s(){
-    local k3s_ver=v1.21.5+k3s1
-    curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
-    echo "download k3s ${k3s_ver}"
-    chmod +x ${releasedir}/k3s
-    ${releasedir}/k3s -h | grep version || exit 1
-}
+# get_k3s(){
+#     local k3s_ver=v1.21.5+k3s1
+#     curl -s -L https://github.com/rancher/k3s/releases/download/${k3s_ver}/k3s -o ${releasedir}/k3s
+#     echo "download k3s ${k3s_ver}"
+#     chmod +x ${releasedir}/k3s
+#     ${releasedir}/k3s -h | grep version || exit 1
+# }
 
 # get_k0s(){
 #     local k0s_ver=v1.21.2+k0s.1
@@ -198,7 +197,7 @@ get_cilium() {
 download(){
     get_localgobin
     get_localbin
-    get_etcd
+    get_etcdctl
     get_helm
     # get_helmv2
     get_dockercompose
@@ -208,7 +207,7 @@ download(){
     # get_getistio
     # get_osm
     # get_linkerd2
-    get_k3s
+    # get_k3s
     # get_k8e
     # get_k0s
     # get_k0sctl
