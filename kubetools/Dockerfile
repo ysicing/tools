@@ -4,6 +4,12 @@ RUN  curl -s -L https://github.com/kubernetes-sigs/kind/releases/latest/download
     mkdir -p /k7s/ && mv kind-linux-amd64 /k7s/kind && \
     chmod 777 /k7s/*
 
+FROM ysicing/debian AS getk3s
+
+RUN  curl -s -L https://github.com/k3s-io/k3s/releases/latest/download/k3s -o ./k3s && \
+    mkdir -p /k7s/ && mv k3s /k7s/k3s && \
+    chmod 777 /k7s/*
+
 FROM ysicing/debian AS getkubectl
 
 ENV K8S_VER=v1.21.5
@@ -23,6 +29,8 @@ RUN curl -s -L https://get.helm.sh/helm-v3.7.2-linux-amd64.tar.gz -o /tmp/helm-l
 FROM ysicing/debian
 
 COPY --from=getkind /k7s/kind /usr/local/bin/
+
+COPY --from=getk3s /k7s/k3s /usr/local/bin/
 
 COPY --from=getkubectl /k7s/kubectl /usr/local/bin/
 
