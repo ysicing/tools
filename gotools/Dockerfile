@@ -1,8 +1,6 @@
-FROM ysicing/dgo as gotools
+FROM ysicing/god as gotools
 
-# ENV GOPROXY=https://goproxy.cn
-
-RUN go get -u github.com/google/gops
+RUN go install github.com/google/gops@latest
 
 FROM ysicing/debian
 

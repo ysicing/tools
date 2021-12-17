@@ -14,8 +14,6 @@ FROM ysicing/core AS builder
 
 COPY . /opt
 
-COPY --from=ergo /usr/local/bin/ergo /opt/local/ergo
-
 COPY --from=gotools /root/bin /opt/gobin
 
 # COPY --from=sealosbuild /go/src/sealos/sealos /opt/local/sealos

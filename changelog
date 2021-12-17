@@ -1,3 +1,8 @@
+## 20211217
+
+- 移除debcache,calicoctl
+- istio版本升级到1.12.1
+
 ## 20211104
 
 - 移除k3s,通过ergo service安装k3s

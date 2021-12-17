@@ -1,8 +1,6 @@
 FROM ysicing/debian AS getk8s
 
-ENV KD_VER=v0.11.1
-
-RUN wget -q https://github.com/kubernetes-sigs/kind/releases/download/${KD_VER}/kind-linux-amd64 && \
+RUN  curl -s -L https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-linux-amd64 -o ./kind-linux-amd64 && \
     mkdir -p /k7s/ && mv kind-linux-amd64 /k7s/kind && \
     chmod 777 /k7s/*
 

@@ -45,7 +45,7 @@ get_etcdctl(){
 }
 
 get_helm(){
-    local helm_ver=v3.7.1
+    local helm_ver=v3.7.2
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -70,20 +70,19 @@ get_helm(){
 # }
 
 get_dockercompose(){
-    local dc_ver=v2.0.1
-    curl -L https://github.com/docker/compose/releases/download/${dc_ver}/docker-compose-linux-x86_64 -o ${releasedir}/docker-compose
-    echo "download docker-compose ${dc_ver}"
+    curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ${releasedir}/docker-compose
+    echo "download docker-compose"
     chmod +x ${releasedir}/docker-compose
-    ${releasedir}/docker-compose version | grep $dc_ver || exit 1
+    ${releasedir}/docker-compose version
 }
 
-get_calicoctl(){
-    local calico_ver=v3.14.2
-    curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
-    echo "download calicoctl ${calico_ver}"
-    chmod +x ${releasedir}/calicoctl
-    ${releasedir}/calicoctl -h | grep version || exit 1
-}
+# get_calicoctl(){
+#     local calico_ver=v3.14.2
+#     curl -s -L https://github.com/projectcalico/calicoctl/releases/download/${calico_ver}/calicoctl-linux-amd64 -o ${releasedir}/calicoctl
+#     echo "download calicoctl ${calico_ver}"
+#     chmod +x ${releasedir}/calicoctl
+#     ${releasedir}/calicoctl -h | grep version || exit 1
+# }
 
 get_ctop(){
     local ctop_ver=0.7.6
@@ -94,7 +93,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.11.4
+    local istio_ver=1.12.1
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -194,6 +193,13 @@ get_cilium() {
     ${releasedir}/cilium -h | grep version || exit 1
 }
 
+get_ergo() {
+    curl -s -L https://github.com/ysicing/ergo/releases/latest/download/ergo_linux_amd64 -o /tmp/ergo
+    cp -a /tmp/ergo ${releasedir}
+    chmod +x ${releasedir}/ergo
+    ${releasedir}/ergo version
+}
+
 download(){
     get_localgobin
     get_localbin
@@ -201,7 +207,7 @@ download(){
     get_helm
     # get_helmv2
     get_dockercompose
-    get_calicoctl
+    # get_calicoctl
     get_ctop
     get_istio
     # get_getistio
@@ -213,6 +219,7 @@ download(){
     # get_k0sctl
     get_critools
     get_mc
+    get_ergo
     get_cilium
     ls -al ${releasedir}/*
 }

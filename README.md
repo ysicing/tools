@@ -1,9 +1,10 @@
+# tools
+
 [![Build Status](https://travis-ci.org/ysicing/tools.svg?branch=master)](https://travis-ci.org/ysicing/tools)
 
-# tools
 常见二进制或者脚本封装
 
-## 常用工具
+## tools list
 
 ```bash
 etcdctl
@@ -13,16 +14,16 @@ calicoctl
 ctop
 ```
 
-# usage
+## usage
 
-```
+```bash
 docker run --rm -v /usr/local/bin:/sysdir ysicing/tools tar zxf /pkg.tgz -C /sysdir
 #  大陆
 docker run --rm -v /usr/local/bin:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/tools tar zxf /pkg.tgz -C /sysdir
 ```
 
-# usage
+## upgrade
 
-```
+```bash
 upgrade-tools
 ```
