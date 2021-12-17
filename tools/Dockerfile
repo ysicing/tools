@@ -19,8 +19,6 @@ COPY --from=gotools /root/bin /opt/gobin
 # COPY --from=sealosbuild /go/src/sealos/sealos /opt/local/sealos
 
 RUN chmod +x /opt/release.sh \
-    # && chmod +x  /opt/local/sealos \
-    && chmod +x /opt/local/ergo \
     && cd /opt \
     && /opt/release.sh
 
