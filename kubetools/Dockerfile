@@ -26,7 +26,14 @@ RUN curl -s -L https://get.helm.sh/helm-v3.7.2-linux-amd64.tar.gz -o /tmp/helm-l
     mkdir -p /tmp/helm && \
     tar xzf /tmp/helm-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1 
 
-FROM ysicing/debian
+FROM ysicing/god
+
+COPY sources.list /etc/apt/sources.list
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install --no-install-recommends --no-install-suggests -y apt-transport-https ca-certificates procps curl wget net-tools make jq nano \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=getkind /k7s/kind /usr/local/bin/
 
