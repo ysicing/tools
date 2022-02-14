@@ -1,3 +1,14 @@
+## 20220214
+
+- helm版本升级到3.8.0
+- docker compose版本升级为v2.2.3
+- istio版本升级到1.13.0
+- etcd版本升级为3.5.2
+- critools版本升级为1.23.0
+- cilium版本升级为0.10.2
+- ergo版本升级为3.0.1
+- kubectl版本升级为1.23.3
+
 ## 20211217
 
 - 移除debcache,calicoctl

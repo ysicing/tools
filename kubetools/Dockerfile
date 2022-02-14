@@ -12,7 +12,7 @@ RUN  curl -s -L https://github.com/k3s-io/k3s/releases/latest/download/k3s -o ./
 
 FROM ysicing/debian AS getkubectl
 
-ENV K8S_VER=v1.21.5
+ENV K8S_VER=v1.23.3
 
 RUN wget -q https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     tar zxf kubernetes-server-linux-amd64.tar.gz && \
@@ -22,7 +22,7 @@ RUN wget -q https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
 
 FROM ysicing/debian AS gethelm
 
-RUN curl -s -L https://get.helm.sh/helm-v3.7.2-linux-amd64.tar.gz -o /tmp/helm-linux-amd64.tar.gz && \
+RUN curl -s -L https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz -o /tmp/helm-linux-amd64.tar.gz && \
     mkdir -p /tmp/helm && \
     tar xzf /tmp/helm-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1 
 

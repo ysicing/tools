@@ -26,7 +26,7 @@ get_localgobin(){
 
 get_etcdctl(){
 
-    ETCD_VER=v3.5.1
+    ETCD_VER=v3.5.2
 
     # choose either URL
     GOOGLE_URL=https://storage.googleapis.com/etcd
@@ -45,7 +45,7 @@ get_etcdctl(){
 }
 
 get_helm(){
-    local helm_ver=v3.7.2
+    local helm_ver=v3.8.0
     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
     rm -rf /tmp/helm && mkdir -p /tmp/helm 
     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
@@ -93,7 +93,7 @@ get_ctop(){
 }
 
 get_istio(){
-    local istio_ver=1.12.1
+    local istio_ver=1.13.0
     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
     rm -rf /tmp/istio && mkdir -p /tmp/istio 
     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
@@ -171,7 +171,7 @@ get_istio(){
 
 
 get_critools(){
-    local critools_ver=v1.22.0
+    local critools_ver=v1.23.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/

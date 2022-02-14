@@ -6,6 +6,14 @@ jobs:
     name: build hackbin docker image
     runs-on: ubuntu-latest
     steps:
+    - name: Install Go
+      uses: actions/setup-go@v2.2.0
+      with:
+        go-version: 1.17.x
+    - name: install ergo
+      run: |
+          echo "install ergo"
+          go install github.com/ysicing/ergo@latest    
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1

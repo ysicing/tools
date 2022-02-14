@@ -1,6 +1,6 @@
 FROM ysicing/debian AS getk8s
 
-ENV K8S_VER=v1.21.5
+ENV K8S_VER=v1.23.3
 
 RUN wget -q https://dl.k8s.io/$K8S_VER/kubernetes-server-linux-amd64.tar.gz && \
     tar zxf kubernetes-server-linux-amd64.tar.gz && \

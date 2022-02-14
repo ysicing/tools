@@ -16,5 +16,6 @@ do
     #     curl -s https://cr.hk1.godu.dev/pull\?image="ysicing/${image}:1.18.20"
     # fi    
     docker push ysicing/${image}
-    curl -s https://cr.hk1.godu.dev/pull\?image="ysicing/${image}"
+    # curl -s https://cr.hk1.godu.dev/pull\?image="ysicing/${image}"
+    ergo ext sync ysicing/${image}
 done
