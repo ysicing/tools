@@ -2,6 +2,9 @@
 
 set -e
 
+curl -s -L https://github.com/ysicing/ergo/releases/latest/download/ergo_linux_amd64 -o ./ergo
+chmod +x ./ergo
+
 images=$(ls -al | grep "drwxr"  | grep -v "\." | grep -vE "(k7s|pkg)" | awk '{print $NF}' | tr '\n' ' ')
 for image in ${images[@]}
 do
@@ -17,5 +20,5 @@ do
     # fi    
     docker push ysicing/${image}
     # curl -s https://cr.hk1.godu.dev/pull\?image="ysicing/${image}"
-    ergo ext sync ysicing/${image}
+    ./ergo ext sync ysicing/${image}
 done
