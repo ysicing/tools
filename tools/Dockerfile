@@ -6,7 +6,7 @@
 
 # RUN git clone https://github.com/ysicing/sealos.git --depth 1 -b 1.18-talk && cd sealos && ./build.sh 1.18-talk
 
-FROM ysicing/ergo AS ergo
+# FROM ysicing/ergo AS ergo
 
 FROM ysicing/gotools AS gotools
 

@@ -203,13 +203,13 @@ get_ergo() {
 download(){
     get_localgobin
     get_localbin
-    get_etcdctl
-    get_helm
+    # get_etcdctl
+    # get_helm
     # get_helmv2
-    get_dockercompose
+    # get_dockercompose
     # get_calicoctl
     get_ctop
-    get_istio
+    # get_istio
     # get_getistio
     # get_osm
     # get_linkerd2
@@ -219,8 +219,8 @@ download(){
     # get_k0sctl
     get_critools
     get_mc
-    get_ergo
-    get_cilium
+    # get_ergo
+    # get_cilium
     ls -al ${releasedir}/*
 }
 
