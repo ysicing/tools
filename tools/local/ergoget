@@ -5,7 +5,7 @@ get=$1
 echo "will download $get"
 
 kindget() {
-    which kind || (
+    which docker || (
         docker pull registry.cn-beijing.aliyuncs.com/k7scn/kind
         docker run -it --rm -v /tmp/kinddl:/root registry.cn-beijing.aliyuncs.com/k7scn/kind cp -a /usr/local/bin/kind /root/kind
         mv /tmp/kinddl/kind /usr/local/bin/kind
@@ -13,8 +13,17 @@ kindget() {
     )
 }
 
+helm() {
+    which docker || (
+        docker pull registry.cn-beijing.aliyuncs.com/k7scn/helm
+        docker run -it --rm -v /tmp/helmdl:/root registry.cn-beijing.aliyuncs.com/k7scn/helm cp -a /usr/local/bin/helm /root/helm
+        mv /tmp/helmdl/helm /usr/local/bin/helm
+        chmod +x /usr/local/bin/helm
+    )
+}
+
 kuectlget() {
-    which kubectl || (
+    which docker || (
         docker pull registry.cn-beijing.aliyuncs.com/k7scn/kubectl
         docker run -it --rm -v /tmp/kubectldl:/root registry.cn-beijing.aliyuncs.com/k7scn/kubectl cp -a /usr/local/bin/kubectl /root/kubectl
         mv /tmp/kubectldl/kubectl /usr/local/bin/kubectl
@@ -48,6 +57,9 @@ case $get in
     ;;
     kubectl)
         kuectlget
+    ;;
+    helm)
+        helmget
     ;;
     k7s)
         k7sget

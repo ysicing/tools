@@ -14,7 +14,7 @@ COPY k7s/kube /kube
 
 COPY --from=sealosbuild /go/src/sealos/sealos /kube/bin/sealos
 
-ARG K8SVER=v1.21.5
+ARG K8SVER=v1.23.13
 
 RUN chmod +x /release.sh \
     && /release.sh

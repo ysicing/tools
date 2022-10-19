@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 set -ex
 
@@ -10,7 +10,7 @@ mkdir -p $releasedir
 
 get_localbin(){
     echo "copy local bin"
-    chmod +x local/* 
+    chmod +x local/*
     cp -a local/* ${releasedir}
     command -v curl || (
         apt update
@@ -20,56 +20,54 @@ get_localbin(){
 
 get_localgobin(){
     echo "copy local go bin"
-    chmod +x /opt/gobin/* 
+    chmod +x /opt/gobin/*
     cp -a /opt/gobin/*  ${releasedir}
 }
 
-get_etcdctl(){
+# get_etcdctl(){
+#     ETCD_VER=v3.5.5
+#     # choose either URL
+#     GOOGLE_URL=https://storage.googleapis.com/etcd
+#     GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
+#     DOWNLOAD_URL=${GOOGLE_URL}
 
-    ETCD_VER=v3.5.2
+#     rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+#     rm -rf /tmp/test-etcd && mkdir -p /tmp/test-etcd
 
-    # choose either URL
-    GOOGLE_URL=https://storage.googleapis.com/etcd
-    GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
-    DOWNLOAD_URL=${GOOGLE_URL}
+#     curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+#     tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
+#     echo "copy etcd"
+#     cp /tmp/test-etcd/etcdctl  ${releasedir}
+#     chmod +x ${releasedir}/etcd*
+#     ${releasedir}/etcdctl -h | grep version || exit 1
+# }
 
-    rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-    rm -rf /tmp/test-etcd && mkdir -p /tmp/test-etcd
-
-    curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-    tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/test-etcd --strip-components=1
-    echo "copy etcd"
-    cp /tmp/test-etcd/etcdctl  ${releasedir}
-    chmod +x ${releasedir}/etcd*
-    ${releasedir}/etcdctl -h | grep version || exit 1
-}
-
-get_helm(){
-    local helm_ver=v3.8.0
-    rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
-    rm -rf /tmp/helm && mkdir -p /tmp/helm 
-    curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
-    tar xzf /tmp/helm-${helm_ver}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
-    echo "copy helm"
-    cp -a /tmp/helm/helm ${releasedir}
-    chmod +x ${releasedir}/helm
-    ${releasedir}/helm -h | grep version || exit 1
-}
+# get_helm(){
+#     local helm_ver=v3.10.1
+#     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
+#     rm -rf /tmp/helm && mkdir -p /tmp/helm
+#     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
+#     tar xzf /tmp/helm-${helm_ver}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
+#     echo "copy helm"
+#     cp -a /tmp/helm/helm ${releasedir}
+#     chmod +x ${releasedir}/helm
+#     ${releasedir}/helm -h | grep version || exit 1
+# }
 
 # get_helmv2(){
 #     local helm_ver=v2.17.0
 #     rm -f /tmp/helm-${helm_ver}-linux-amd64.tar.gz
-#     rm -rf /tmp/helm && mkdir -p /tmp/helm 
+#     rm -rf /tmp/helm && mkdir -p /tmp/helm
 #     curl -s -L https://get.helm.sh/helm-${helm_ver}-linux-amd64.tar.gz -o /tmp/helm-${helm_ver}-linux-amd64.tar.gz
 #     tar xzf /tmp/helm-${helm_ver}-linux-amd64.tar.gz -C /tmp/helm  --strip-components=1
 #     echo "copy helmv2"
-#     mv /tmp/helm/helm /tmp/helm/helmv2 
+#     mv /tmp/helm/helm /tmp/helm/helmv2
 #     cp -a /tmp/helm/helmv2 ${releasedir}
 #     chmod +x ${releasedir}/helmv2
 #     ${releasedir}/helmv2 -h | grep version || exit 1
 # }
 
-get_dockercompose(){
+get_docker_compose(){
     curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ${releasedir}/docker-compose
     echo "download docker-compose"
     chmod +x ${releasedir}/docker-compose
@@ -85,24 +83,24 @@ get_dockercompose(){
 # }
 
 get_ctop(){
-    local ctop_ver=0.7.6
+    local ctop_ver=0.7.7
     curl -s -L https://github.com/bcicen/ctop/releases/download/${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
     echo "download ctop ${ctop_ver}"
     chmod +x ${releasedir}/ctop
     ${releasedir}/ctop -v | grep version || exit 1
 }
 
-get_istio(){
-    local istio_ver=1.13.0
-    rm -f /tmp/istio-${istio_ver}-linux.tar.gz
-    rm -rf /tmp/istio && mkdir -p /tmp/istio 
-    curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
-    tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
-    echo "copy istio"
-    cp -a /tmp/istio/bin/istioctl ${releasedir}
-    chmod +x ${releasedir}/istioctl
-    ${releasedir}/istioctl -h | grep version || exit 1
-}
+# get_istio(){
+#     local istio_ver=1.15.2
+#     rm -f /tmp/istio-${istio_ver}-linux.tar.gz
+#     rm -rf /tmp/istio && mkdir -p /tmp/istio
+#     curl -s -L https://github.com/istio/istio/releases/download/${istio_ver}/istio-${istio_ver}-linux-amd64.tar.gz -o /tmp/istio-${istio_ver}-linux.tar.gz
+#     tar xzf /tmp/istio-${istio_ver}-linux.tar.gz -C /tmp/istio  --strip-components=1
+#     echo "copy istio"
+#     cp -a /tmp/istio/bin/istioctl ${releasedir}
+#     chmod +x ${releasedir}/istioctl
+#     ${releasedir}/istioctl -h | grep version || exit 1
+# }
 
 # get_getistio(){
 #     local getistio_ver=v1.0.5
@@ -171,7 +169,7 @@ get_istio(){
 
 
 get_critools(){
-    local critools_ver=v1.23.0
+    local critools_ver=v1.25.0
     curl -s -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${critools_ver}/crictl-${critools_ver}-linux-amd64.tar.gz -o /tmp/crictl-${critools_ver}-linux-amd64.tar.gz
     echo "download critools ${critools_ver}"
     tar xzf /tmp/crictl-${critools_ver}-linux-amd64.tar.gz -C /tmp/
@@ -206,7 +204,7 @@ download(){
     # get_etcdctl
     # get_helm
     # get_helmv2
-    # get_dockercompose
+    get_docker_compose
     # get_calicoctl
     get_ctop
     # get_istio
@@ -218,7 +216,7 @@ download(){
     # get_k0s
     # get_k0sctl
     get_critools
-    get_mc
+    # get_mc
     # get_ergo
     # get_cilium
     ls -al ${releasedir}/*

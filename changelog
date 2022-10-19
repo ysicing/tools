@@ -1,3 +1,16 @@
+## 20221019
+
+- 更新tools
+  - 移除 `debian.patch`, `k3s.*`, `calicoctl`
+
+- helm版本升级到3.10.1
+- kubectl版本升级为1.25.3
+- etcd版本升级为3.5.5
+- docker compose版本升级为2.12.0
+- ctop版本升级为0.7.7
+- istio版本升级到1.15.2
+- critools版本升级为1.25.0
+
 ## 20220318
 
 - tools移除helm等二进制安装

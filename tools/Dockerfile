@@ -8,13 +8,13 @@
 
 # FROM ysicing/ergo AS ergo
 
-FROM ysicing/gotools AS gotools
+# FROM ysicing/kubetools AS kubetools
 
 FROM ysicing/core AS builder
 
 COPY . /opt
 
-COPY --from=gotools /root/bin /opt/gobin
+# COPY --from=kubetools /root/bin /opt/gobin
 
 # COPY --from=sealosbuild /go/src/sealos/sealos /opt/local/sealos
 

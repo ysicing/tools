@@ -4,11 +4,11 @@ command_exists() {
 	command -v "$@" > /dev/null 2>&1
 }
 
-if command_exists docker; then 
+if command_exists docker; then
    docker images | grep -E '(months|week|day)'  | awk '{print $1":"$2}' | xargs -I {} docker rmi {}
    docker images | grep none | awk '{print $3}' | xargs -I {} docker rmi {}
 fi
 
-if command_exists crictl; then 
+if command_exists crictl; then
    crictl images | grep none | awk '{print $3}' | xargs crictl rmi
 fi
