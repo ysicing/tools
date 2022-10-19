@@ -84,7 +84,7 @@ get_docker_compose(){
 
 get_ctop(){
     local ctop_ver=0.7.7
-    curl -s -L https://github.com/bcicen/ctop/releases/download/${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
+    curl -s -L https://github.com/bcicen/ctop/releases/download/v${ctop_ver}/ctop-${ctop_ver}-linux-amd64 -o ${releasedir}/ctop
     echo "download ctop ${ctop_ver}"
     chmod +x ${releasedir}/ctop
     ${releasedir}/ctop -v | grep version || exit 1
@@ -199,7 +199,7 @@ get_ergo() {
 }
 
 download(){
-    get_localgobin
+    # get_localgobin
     get_localbin
     # get_etcdctl
     # get_helm

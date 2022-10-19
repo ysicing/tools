@@ -1,76 +1,16 @@
 #!/bin/bash
 
-get=$1
+getbin=$1
 
-echo "will download $get"
+echo "will download $getbin"
 
-kindget() {
-    which docker || (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/kind
-        docker run -it --rm -v /tmp/kinddl:/root registry.cn-beijing.aliyuncs.com/k7scn/kind cp -a /usr/local/bin/kind /root/kind
-        mv /tmp/kinddl/kind /usr/local/bin/kind
-        chmod +x /usr/local/bin/kind
-    )
+command_exists() {
+	command -v "$@" > /dev/null 2>&1
 }
 
-helm() {
-    which docker || (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/helm
-        docker run -it --rm -v /tmp/helmdl:/root registry.cn-beijing.aliyuncs.com/k7scn/helm cp -a /usr/local/bin/helm /root/helm
-        mv /tmp/helmdl/helm /usr/local/bin/helm
-        chmod +x /usr/local/bin/helm
-    )
-}
-
-kuectlget() {
-    which docker || (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/kubectl
-        docker run -it --rm -v /tmp/kubectldl:/root registry.cn-beijing.aliyuncs.com/k7scn/kubectl cp -a /usr/local/bin/kubectl /root/kubectl
-        mv /tmp/kubectldl/kubectl /usr/local/bin/kubectl
-        chmod +x /usr/local/bin/kubectl
-    )
-}
-
-k7sget(){
-    which docker && (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/k7s
-    )
-}
-
-pkgget(){
-    which docker && (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20
-        docker run -it --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/pkg:1.18.20 cp /kube.tgz /sysdir
-    )
-}
-
-tailscaleget(){
-    which docker && (
-        docker pull registry.cn-beijing.aliyuncs.com/k7scn/debcache
-        docker run -it --rm -v /root:/sysdir registry.cn-beijing.aliyuncs.com/k7scn/debcache cp $(docker run --rm registry.cn-beijing.aliyuncs.com/k7scn/debcache ls -l | grep deb | awk '{print $NF}') /sysdir/
-    )
-}
-
-case $get in
-    kind)
-        kindget
-    ;;
-    kubectl)
-        kuectlget
-    ;;
-    helm)
-        helmget
-    ;;
-    k7s)
-        k7sget
-    ;;
-    pkg)
-        pkgget
-    ;;
-    tailscale)
-        tailscaleget
-    ;;
-    *)
-        echo "kind\nkubectl\nk7s\npkg\ntailscale\n"
-    ;;
-esac
+if command_exists docker && [ -e /var/run/docker.sock ]; then
+    docker pull registry.cn-beijing.aliyuncs.com/k7scn/kubetools
+    docker run -it --rm -v /tmp/kubetools:/root registry.cn-beijing.aliyuncs.com/k7scn/kubetools cp -a /root/bin/$getbin /root/$getbin
+    mv /tmp/kubetools/$getbin /usr/local/bin/$getbin
+    chmod +x /usr/local/bin/$getbin
+fi
