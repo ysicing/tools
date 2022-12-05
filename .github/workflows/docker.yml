@@ -5,7 +5,7 @@ jobs:
   build:
     name: build hackbin docker image
     runs-on: ubuntu-latest
-    steps:   
+    steps:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
@@ -20,4 +20,4 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         ALI_PASS: ${{ secrets.ALI_PASS }}
-        ALI_USER: ${{ secrets.ALI_USER }}        
+        ALI_USER: ${{ secrets.ALI_USER }}

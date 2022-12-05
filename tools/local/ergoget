@@ -10,7 +10,7 @@ command_exists() {
 
 if command_exists docker && [ -e /var/run/docker.sock ]; then
     docker pull registry.cn-beijing.aliyuncs.com/k7scn/kubetools
-    docker run -it --rm -v /tmp/kubetools:/root registry.cn-beijing.aliyuncs.com/k7scn/kubetools cp -a /root/bin/$getbin /root/$getbin
+    docker run -it --rm -v /tmp/kubetools:/ysicing registry.cn-beijing.aliyuncs.com/k7scn/kubetools cp -a /root/bin/$getbin /ysicing/$getbin
     mv /tmp/kubetools/$getbin /usr/local/bin/$getbin
     chmod +x /usr/local/bin/$getbin
 fi
